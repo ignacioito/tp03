@@ -22,10 +22,10 @@ int main(int argc, char const *argv[])
 {
 	Jet ig;
 
-	ig.des[0] = 6;
-	ig.des[1] = 6;
+	ig.des[0] = 1;
+	ig.des[1] = 2;
 	ig.des[2] = 3;
-	ig.des[3] = 6;
+	ig.des[3] = 4;
 	ig.des[4] = 6;
 
 
