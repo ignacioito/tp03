@@ -14,12 +14,11 @@
 #include <stdlib.h>
 #include <time.h>
 
-typedef struct Jet jet;
+typedef struct Jet Jet;
 struct Jet{
   int des[5];
 };
 
-Jet jet;
 
 int nbDeFace(Jet jet, int face);
 int brelan(Jet jet);
