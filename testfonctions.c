@@ -16,6 +16,8 @@ struct Jet{
 
 int petitesuite(Jet ig);
 
+void inverser();
+void ordonner();
 
 
 int main(int argc, char const *argv[])
@@ -37,10 +39,48 @@ int main(int argc, char const *argv[])
 
 
 int petitesuite(Jet ig){
+	ordonner(ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
+	return 0;
+}
 
-	int diferent = 1;
-	int aux;
 
+
+
+
+void inverser (int* a, int* b){
+	int temp = *b;
+	*b = *a;
+	*a = temp;
+
+}
+void ordonner(int* a, int* b, int* c, int* d, int* e)
+{
+
+	if(*a > *b)
+	{
+		inverser(a, b);
+	}
+	if (*a > *c)
+	{
+		inverser(a, c);
+	}
+	if(*b > *c)
+	{
+		inverser(b, c);
+	}
+	if(*b > *d)
+	{
+		inverser(b, d);
+	}
+	if (*b > *e)
+	{
+		inverser(b, e);
+	}
+
+}
+
+
+/*
 	while(diferent)
 	{
 
@@ -62,7 +102,7 @@ int petitesuite(Jet ig){
 	return 0;
 }
 
-
+*/
 
 
 
