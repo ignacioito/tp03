@@ -38,33 +38,36 @@ int main(int argc, char const *argv[])
 
 int petitesuite(Jet ig){
 
-	int diferente = 1;
+	int diferent = 1;
 	int aux;
 
-	while(diferente)
+	while(diferent)
 	{
 
-		for (int i = 0; i < 5; ++i)
+		for (int i = 0; i < 4; ++i)
 		{
 			if(ig.des[i] > ig.des[i+1])
 			{
 				aux = ig.des[i+1];
 				ig.des[i+1] = ig.des[i];
 				ig.des[i] = aux;
-				printf("**");
+				printf("pos 0= %d - pos 1: %d - pos 2= %d - pos 3: %d - pos 4: %d", ig.des[i], ig.des[i+1], ig.des[i+2], ig.des[i+3], ig.des[i+4], ig.des[i+5]);
+
+				//printf("%d\n%d\n%d\n%d\n%d\n", ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
 			}
-			else diferente = 0;
+			else diferent = 0;
 
 		}
 	}
+	return 0;
+}
 
 
 
 
 
 
-
-
+/*
 	for (int i = 0; i < 5; ++i)
 	{
 		if(ig.des[i+1] == (ig.des[i] + 1))   
@@ -76,3 +79,4 @@ int petitesuite(Jet ig){
 	}
 	return 0;
 }
+*/
