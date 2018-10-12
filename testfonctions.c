@@ -14,7 +14,7 @@ struct Jet{
 };
 
 
-int yahtzee(Jet ig);
+int petitesuite(Jet ig);
 
 
 
@@ -26,30 +26,27 @@ int main(int argc, char const *argv[])
 	ig.des[1] = 2;
 	ig.des[2] = 3;
 	ig.des[3] = 4;
-	ig.des[4] = 6;
+	ig.des[4] = 5;
 
 
-	printf("test %d\n", yahtzee(ig));
+	printf("test %d\n", petitesuite(ig));
 	
 
 	return 0;
 }
 
 
-int yahtzee(Jet ig){
-
- 	
-	int yahtzee = 50;
+int petitesuite(Jet ig){
 
 	
-	//for (int i = 0; i < 5; ++i)
-	//{
-		if((ig.des[0] == ig.des[1]) && (ig.des[1] == ig.des[2]) 
-			&& (ig.des[2]== ig.des[3]) && (ig.des[3]== ig.des[4])) 
-		{
-			//printf("Teste %d\n", yahtzee);
-			return 50;
-		}
-	//}
+	for (int i = 0; i < 5; ++i)
+	{
+		if(ig.des[i+1] == (ig.des[i] + 1))   
+			{
+				printf("******\n");
+			
+			
+			}
+	}
 	return 0;
 }
