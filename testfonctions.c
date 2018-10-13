@@ -16,43 +16,14 @@ struct Jet{
 
 int petitesuite(Jet ig);
 
-void inverser();
-void ordonner();
-
-
-int main(int argc, char const *argv[])
-{
-	Jet ig;
-
-	ig.des[0] = 5;
-	ig.des[1] = 4;
-	ig.des[2] = 3;
-	ig.des[3] = 2;
-	ig.des[4] = 1;
-
-
-	printf("test %d\n", petitesuite(ig));
-	
-
-	return 0;
-}
-
-
-int petitesuite(Jet ig){
-	ordonner(ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
-	return 0;
-}
-
-
-
-
-
 void inverser (int* a, int* b){
 	int temp = *b;
 	*b = *a;
 	*a = temp;
 
 }
+
+
 void ordonner(int* a, int* b, int* c, int* d, int* e)
 {
 
@@ -63,6 +34,14 @@ void ordonner(int* a, int* b, int* c, int* d, int* e)
 	if (*a > *c)
 	{
 		inverser(a, c);
+	}
+	if (*a > *d)
+	{
+		inverser(a, d);
+	}
+	if (*a > *e)
+	{
+		inverser(a, e);
 	}
 	if(*b > *c)
 	{
@@ -76,8 +55,63 @@ void ordonner(int* a, int* b, int* c, int* d, int* e)
 	{
 		inverser(b, e);
 	}
-
+	if (*c > *d)
+	{
+		inverser(c, d);
+	}
+	if (*c > *e)
+	{
+		inverser(c, e);
+	}
+	if (*d > *e)
+	{
+		inverser(d, e);
+	}
 }
+
+
+int main(int argc, char const *argv[])
+{
+	Jet ig;
+
+	ig.des[0] = 5;
+	ig.des[1] = 4;
+	ig.des[2] = 3;
+	ig.des[3] = 2;
+	ig.des[4] = 3;
+
+
+	printf("test %d\n", petitesuite(ig));
+	
+
+	return 0;
+}
+
+
+int petitesuite(Jet ig){
+	ordonner(&ig.des[0], &ig.des[1], &ig.des[2], &ig.des[3], &ig.des[4]);
+	printf("%d %d %d %d %d \n", ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
+	int c = 0;
+	for (int i = 0; i < 3; ++i)
+	{
+		if((ig.des[i] = ig.des[i-1]+1) ){
+			c++;
+		}
+		if (c == 4)
+		{
+			printf("now you got 50 points\n");
+		}
+	}
+	
+	return 0;
+}
+
+
+
+
+
+
+
 
 
 /*
