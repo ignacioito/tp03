@@ -14,7 +14,7 @@ struct Jet{
 };
 
 
-int petitesuite(Jet ig);
+int grandsuite(Jet ig);
 
 void inverser (int* a, int* b){
 	int temp = *b;
@@ -74,44 +74,59 @@ int main(int argc, char const *argv[])
 {
 	Jet ig;
 
-	ig.des[0] = 5;
+	ig.des[0] = 4;
 	ig.des[1] = 4;
 	ig.des[2] = 3;
-	ig.des[3] = 2;
-	ig.des[4] = 3;
+	ig.des[3] = 1;
+	ig.des[4] = 2;
 
 
-	printf("test %d\n", petitesuite(ig));
+	printf("test %d\n", grandsuite(ig));
 	
 
 	return 0;
 }
 
 
-int petitesuite(Jet ig){
+int grandsuite(Jet ig){
 	ordonner(&ig.des[0], &ig.des[1], &ig.des[2], &ig.des[3], &ig.des[4]);
-	printf("%d %d %d %d %d \n", ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
+	//printf("%d %d %d %d %d \n", ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
 	int c = 0;
-	for (int i = 0; i < 3; ++i)
+	int des2[3];
+	for (int i = 0; i < 5; ++i)
 	{
-		if((ig.des[i] = ig.des[i-1]+1) ){
-			c++;
-		}
-		if (c == 4)
+		if(ig.des[i] == ig.des[i+1] + 1)
 		{
-			printf("now you got 50 points\n");
+			c = ig.des[i];
+			for (int j = 0; j < 4; ++j)
+			{
+				des2[j] = c;
+			}
 		}
+		++i;
 	}
-	
-	return 0;
+	return printf("%d %d %d %d\n", des2[0], des2[1], des2[2], des2[3]);
 }
 
 
 
 
 
+/*
+//conditionnel pour vérifier si le sequence est de 1 à 5 ou de 2 à 6 en utilisant le "if"
 
-
+if ((&ig.des[0] == 1) && (&ig.des[1] == 2) && (&ig.des[2] == 3) && (&ig.des[3] == 4) && (&ig.des[4] == 5)
+	{
+		printf("50 points d'un grandsuite\n");		
+	}
+	if ((&ig.des[0] == 2) && (&ig.des[1] == 3) && (&ig.des[2] == 4) && (&ig.des[3] == 5) && (&ig.des[4] == 6)
+	{
+		printf("50 points d'un grandsuite\n");		
+	}
+	else{
+	printf("grandsuite 0 points\n");
+	}
+*/
 
 
 /*
