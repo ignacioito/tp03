@@ -105,7 +105,7 @@ int grandsuite(Jet ig){
 		}
 		++i;
 	}
-	return printf("%d %d %d %d\n", des2[0], des2[1], des2[2], des2[3]);
+	printf("%d %d %d %d\n", des2[0], des2[1], des2[2], des2[3]);
 }
 
 

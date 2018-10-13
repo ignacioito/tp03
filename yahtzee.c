@@ -25,30 +25,15 @@ int main()
   Jet jet;
   Jet jogadaFeita = jogada (jet);
   
- printf ("a soma sera %d\n\n", chance (jogadaFeita));
- printf ("no yahtzee %d\n\n", yahtzee (jogadaFeita));
+ printf ("\nNo chance %d\n", chance (jogadaFeita));
+ printf ("No yahtzee %d\n", yahtzee (jogadaFeita));
+ printf ("No carre %d\n", carre (jogadaFeita));
+ printf ("No brelan %d\n\n", brelan (jogadaFeita)); 
 
 
 
 }
 
-//*******
-//
-//
-//
-//******
-int chance(Jet teste)
- {
-    int somme = 0;
-
-    for (int i = 0; i < 5; ++i)
-     
-      somme = somme + teste.des[i]; 
-      
-      return somme;
-
-
- }
  //****
  //
  //
@@ -116,4 +101,136 @@ int chance(Jet teste)
     }
   
   return 0;
+}
+//*******
+//
+//
+//
+//******
+int chance(Jet teste)
+ {
+    int somme = 0;
+
+    for (int i = 0; i < 5; ++i)
+     
+      somme = somme + teste.des[i]; 
+      
+      return somme;
+
+ }
+//*******
+//
+//
+//
+//*******
+int carre(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  
+
+  for (int i = 0; i < 5; ++i)
+    {
+      total = total + jet.des[i]; 
+    }
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+            
+            if ((somme1 >= 4) || (somme2 >= 4) || (somme3 >= 4) || (somme4 >= 4) || (somme5 >= 4) || (somme6 >= 4))
+            {
+              return total; 
+            }
+      
+  return 0 ;
+  
+}  
+//*******
+//
+//
+//
+//*******
+int brelan(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  
+
+  for (int i = 0; i < 5; ++i)
+    {
+      total = total + jet.des[i]; 
+    }
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+            
+            if ((somme1 >= 3) || (somme2 >= 3) || (somme3 >= 3) || (somme4 >= 3) || (somme5 >= 3) || (somme6 >= 3))
+            {
+              return total; 
+            }
+      
+  return 0 ;
+  
 }
