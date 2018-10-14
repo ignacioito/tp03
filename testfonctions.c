@@ -100,7 +100,7 @@ int grandsuite(Jet ig){
 			c++;
 			if (c == 5)
 			{
-				printf("c %d\n", c);
+				printf("grandsuite vault 40 points %d\n", c);
 			}
 			
 		}
