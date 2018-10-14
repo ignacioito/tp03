@@ -74,14 +74,14 @@ int main(int argc, char const *argv[])
 {
 	Jet ig;
 
-	ig.des[0] = 4;
+	ig.des[0] = 5;
 	ig.des[1] = 4;
 	ig.des[2] = 3;
 	ig.des[3] = 1;
 	ig.des[4] = 2;
 
 
-	printf("test %d\n", grandsuite(ig));
+	printf("%d\n", grandsuite(ig));
 	
 
 	return 0;
@@ -92,20 +92,20 @@ int grandsuite(Jet ig){
 	ordonner(&ig.des[0], &ig.des[1], &ig.des[2], &ig.des[3], &ig.des[4]);
 	//printf("%d %d %d %d %d \n", ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
 	int c = 0;
-	int des2[3];
 	for (int i = 0; i < 5; ++i)
 	{
-		if(ig.des[i] == ig.des[i+1] + 1)
+		//If la position 1 (- 1) est equal la position 0 (positon 0 vault 1 / position 1 vault 2 (-1 = 1))
+		if(ig.des[i] == ig.des[i+1] - 1)
 		{
-			c = ig.des[i];
-			for (int j = 0; j < 4; ++j)
+			c++;
+			if (c == 5)
 			{
-				des2[j] = c;
+				printf("c %d\n", c);
 			}
+			
 		}
-		++i;
 	}
-	printf("%d %d %d %d\n", des2[0], des2[1], des2[2], des2[3]);
+	return c;
 }
 
 
