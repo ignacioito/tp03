@@ -6,10 +6,11 @@ typedef struct Jet Jet;
 struct Jet
  {
   int des[5]; 
+
  }; 
 
 Jet jogada (Jet jet);
-int nbDeFace(Jet jet, int face);
+int nbDeFace(Jet jet);
 int brelan(Jet jet);
 int carre(Jet jet);
 int mainPleine(Jet jet);
@@ -17,38 +18,48 @@ int petiteSuite(Jet jet);
 int grandeSuite(Jet jet);
 int yahtzee(Jet jet);
 int chance(Jet jet);
+void dessineDes(Jet jet);
 
 
 
 int main()
 {
+  
   Jet jet;
+  int i;
+
+
+//for(i = 0; i < 2; i++)
+//{
+
+//printf("\033c" );
+
   Jet jogadaFeita = jogada (jet);
   
- printf ("a soma sera %d\n\n", chance (jogadaFeita));
- printf ("no yahtzee %d\n\n", yahtzee (jogadaFeita));
 
+
+ printf ("\n\n");
+ printf ("**********************\n");
+ printf ("*                QUEL POINTAGE VOULEZ-VOUS GARDER?               *\n");
+ printf ("**********************\n");
+ nbDeFace (jogadaFeita);
+ printf ("*  (G) - Pour le main plaine on a la valeur: %d\n", mainPleine (jogadaFeita));
+ printf ("*  (H) - Pour le brelan on a la valeur: %d\n", brelan (jogadaFeita));
+ printf ("*  (I) - Pour le carre on a la valeur: %d\n", carre (jogadaFeita));
+ printf ("*  (J) - Pour le petite suite on a la valeur: %d\n", petiteSuite (jogadaFeita));
+ printf ("*  (K) - Pour le grande suite on a la valeur: %d\n", grandeSuite (jogadaFeita)); 
+ printf ("*  (L) - Pour le chance on a la valeur: %d\n", chance (jogadaFeita));
+ printf ("*  (M) - Pour le yahtzee on a la valeur: %d\n", yahtzee (jogadaFeita));
+ printf ("\n");
+ printf ("**********************\n\n");
+ 
+
+
+//}
 
 
 }
 
-//*******
-//
-//
-//
-//******
-int chance(Jet teste)
- {
-    int somme = 0;
-
-    for (int i = 0; i < 5; ++i)
-     
-      somme = somme + teste.des[i]; 
-      
-      return somme;
-
-
- }
  //****
  //
  //
@@ -71,9 +82,11 @@ int chance(Jet teste)
   {
      n = rand() % MAX + MIN;
      jet.des[i] = n;
-     printf("%d  ", jet.des[i]);
+     //printf("%d  ", jet.des[i]);
   }
   printf("\n");
+
+  dessineDes(jet);
 
   for (int c = 0; c < 2; ++c)
   {
@@ -94,12 +107,8 @@ int chance(Jet teste)
           jet.des[i] = n;
          }
         }
-
-        for (int i = 0; i < 5; ++i)
-        {
-          printf("%d  ", jet.des[i]);
-        }
-        printf("\n");
+dessineDes(jet);
+        
   }
   return jet;
  }
@@ -116,4 +125,655 @@ int chance(Jet teste)
     }
   
   return 0;
+}
+//*******
+//
+//
+//
+//******
+int chance(Jet teste)
+ {
+    int somme = 0;
+
+    for (int i = 0; i < 5; ++i)
+     
+      somme = somme + teste.des[i]; 
+      
+      return somme;
+
+ }
+//*******
+//
+//
+//
+//*******
+int carre(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  
+
+  for (int i = 0; i < 5; ++i)
+    {
+      total = total + jet.des[i]; 
+    }
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+            
+            if ((somme1 >= 4) || (somme2 >= 4) || (somme3 >= 4) || (somme4 >= 4) || (somme5 >= 4) || (somme6 >= 4))
+            {
+              return total; 
+            }
+      
+  return 0 ;
+  
+}  
+//*******
+//
+//
+//
+//*******
+int brelan(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  
+
+  for (int i = 0; i < 5; ++i)
+    {
+      total = total + jet.des[i]; 
+    }
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+            
+            if ((somme1 >= 3) || (somme2 >= 3) || (somme3 >= 3) || (somme4 >= 3) || (somme5 >= 3) || (somme6 >= 3))
+            {
+              return total; 
+            }
+      
+  return 0 ;
+  
+}
+//*******
+//
+//
+//
+//*******  
+int mainPleine(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+            
+            if (((somme1 == 3) && (somme2 == 2)) ||
+                ((somme1 == 3) && (somme3 == 2)) ||
+                ((somme1 == 3) && (somme4 == 2)) ||
+                ((somme1 == 3) && (somme5 == 2)) ||
+                ((somme1 == 3) && (somme6 == 2)) ||
+                ((somme2 == 3) && (somme1 == 2)) ||
+                ((somme2 == 3) && (somme3 == 2)) ||
+                ((somme2 == 3) && (somme4 == 2)) ||
+                ((somme2 == 3) && (somme5 == 2)) ||
+                ((somme2 == 3) && (somme6 == 2)) ||
+                ((somme3 == 3) && (somme1 == 2)) ||
+                ((somme3 == 3) && (somme2 == 2)) ||
+                ((somme3 == 3) && (somme4 == 2)) ||
+                ((somme3 == 3) && (somme5 == 2)) ||
+                ((somme3 == 3) && (somme6 == 2)) ||
+                ((somme4 == 3) && (somme1 == 2)) ||
+                ((somme4 == 3) && (somme2 == 2)) ||
+                ((somme4 == 3) && (somme3 == 2)) ||
+                ((somme4 == 3) && (somme5 == 2)) ||
+                ((somme4 == 3) && (somme6 == 2)) ||
+                ((somme5 == 3) && (somme1 == 2)) ||
+                ((somme5 == 3) && (somme2 == 2)) ||
+                ((somme5 == 3) && (somme3 == 2)) ||
+                ((somme5 == 3) && (somme4 == 2)) ||
+                ((somme5 == 3) && (somme6 == 2)) ||
+                ((somme6 == 3) && (somme1 == 2)) ||
+                ((somme6 == 3) && (somme2 == 2)) ||
+                ((somme6 == 3) && (somme3 == 2)) ||
+                ((somme6 == 3) && (somme4 == 2)) ||
+                ((somme6 == 3) && (somme5 == 2)))
+                
+                
+            {
+              return 25; 
+            }
+      
+  return 0 ;
+  
+}
+//****
+ //
+ //
+ //
+ //***
+ int petiteSuite(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+            
+            if (((somme1 >= 1) && (somme2 >= 1) && (somme3 >= 1) &&
+                (somme4 >= 1)) ||
+                ((somme2 >= 1) && (somme3 >= 1) && (somme4 >= 1) &&
+                (somme5 >= 1)) ||
+                ((somme3 >= 1) && (somme4 >= 1) && (somme5 >= 1) &&
+                (somme6 >= 1)))
+                
+            {
+              return 30; 
+            }
+      
+  return 0 ;
+  
+}
+//****
+ //
+ //
+ //
+ //***
+ int grandeSuite(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+            
+            if (((somme1 == 1) && (somme2 == 1) && (somme3 == 1) &&
+                (somme4 == 1) && (somme5 == 1)) ||
+                ((somme2 == 1) && (somme3 == 1) && (somme4 == 1) &&
+                (somme5 == 1) && (somme6 == 1)))
+                
+            {
+              return 40; 
+            }
+      
+  return 0 ;
+  
+}
+//****
+ //
+ //
+ //
+ //***
+int nbDeFace (Jet jet)
+{
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  int somme1a = 0;
+  int somme2a = 0;
+  int somme3a = 0;
+  int somme4a = 0;
+  int somme5a = 0;
+  int somme6a = 0;
+  
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+ 
+  if (somme1 != 0)
+    somme1 *= 1;
+    somme1a = somme1;
+
+  if (somme2 != 0)
+    somme2 *= 2;
+    somme2a = somme2;
+
+  if (somme3 != 0)
+    somme3 *= 3;
+    somme3a = somme3;
+
+  if (somme4 != 0)
+    somme4 *= 4;
+    somme4a = somme4;
+
+  if (somme5 != 0)
+    somme5 *= 5;
+    somme5a = somme5;
+
+  if (somme6 != 0)
+    somme6 *= 6;
+    somme6a = somme6;
+
+
+  
+  printf ("*  (A) - Les valeurs de données avec la face 1 seront: %d\n", somme1a);
+  printf ("*  (B) - Les valeurs de données avec la face 2 seront: %d\n", somme2a);
+  printf ("*  (C) - Les valeurs de données avec la face 3 seront: %d\n", somme3a);
+  printf ("*  (D) - Les valeurs de données avec la face 4 seront: %d\n", somme4a);
+  printf ("*  (E) - Les valeurs de données avec la face 5 seront: %d\n", somme5a);
+  printf ("*  (F) - Les valeurs de données avec la face 6 seront: %d\n", somme6a);
+
+      
+  return 0;
+  
+}
+//****
+ //
+ //
+ //
+ //***
+void dessineDes(Jet jet)
+{
+  
+  int rangee;
+  int colonne;
+  int JetGauche = 0;
+  int JetDroite = 6;  
+  char montrerDes[5][47];
+  
+  
+  for(rangee = 0; rangee < 5; rangee++)
+  {
+    for(colonne = 0; colonne < 47; colonne++)
+    {
+      montrerDes[rangee][colonne] = ' ';      
+      if(((rangee == 0) || (rangee == 4)) && (colonne != 7) && (colonne != 8)
+      && (colonne != 9) && (colonne != 17) && (colonne != 18) && (colonne != 19) && (colonne != 27) && (colonne != 28)
+      && (colonne != 29) && (colonne != 37) && (colonne != 38) && (colonne != 39))
+      {
+        montrerDes[rangee][colonne] = '-';        
+      }                 
+      if(colonne == JetGauche)
+      {
+        montrerDes[rangee][colonne] = '|';
+        montrerDes[0][JetGauche] = '+'; 
+        montrerDes[4][JetGauche] = '+';   
+        JetGauche += 10;              
+      }
+      else if(colonne == JetDroite)
+      {
+        montrerDes[rangee][colonne] = '|';
+        montrerDes[0][JetDroite] = '+';
+        montrerDes[4][JetDroite] = '+';
+        JetDroite += 10;        
+      }             
+    }
+    JetGauche = 0;
+    JetDroite = 6;  
+  } 
+  switch(jet.des[0])
+  {
+    case 1:     
+      montrerDes[2][3] = 'o';       
+    break;
+    case 2:
+      montrerDes[1][5] = 'o';
+      montrerDes[3][1] = 'o';
+    break;
+    case 3:
+      montrerDes[1][5] = 'o';
+      montrerDes[2][3] = 'o';
+      montrerDes[3][1] = 'o';       
+    break;
+    case 4:
+      montrerDes[1][1] = 'o';
+      montrerDes[1][5] = 'o';
+      montrerDes[3][1] = 'o';
+      montrerDes[3][5] = 'o';
+    break;
+    case 5:
+      montrerDes[1][1] = 'o';
+      montrerDes[1][5] = 'o';
+      montrerDes[2][3] = 'o'; 
+      montrerDes[3][1] = 'o';
+      montrerDes[3][5] = 'o';
+    break;
+    case 6:
+      montrerDes[1][1] = 'o';
+      montrerDes[1][5] = 'o';
+      montrerDes[1][3] = 'o';
+      montrerDes[3][3] = 'o';
+      montrerDes[3][1] = 'o';
+      montrerDes[3][5] = 'o';
+    break;
+  }
+  switch(jet.des[1])
+  {
+    case 1:     
+      montrerDes[2][13] = 'o';        
+    break;
+    case 2:
+      montrerDes[1][15] = 'o';
+      montrerDes[3][11] = 'o';
+    break;
+    case 3:
+      montrerDes[1][15] = 'o';
+      montrerDes[2][13] = 'o';
+      montrerDes[3][11] = 'o';        
+    break;
+    case 4:
+      montrerDes[1][11] = 'o';
+      montrerDes[1][15] = 'o';
+      montrerDes[3][11] = 'o';
+      montrerDes[3][15] = 'o';
+    break;
+    case 5:
+      montrerDes[1][11] = 'o';
+      montrerDes[1][15] = 'o';
+      montrerDes[2][13] = 'o';  
+      montrerDes[3][11] = 'o';
+      montrerDes[3][15] = 'o';
+    break;
+    case 6:
+      montrerDes[1][11] = 'o';
+      montrerDes[1][15] = 'o';
+      montrerDes[1][13] = 'o';
+      montrerDes[3][13] = 'o';
+      montrerDes[3][11] = 'o';
+      montrerDes[3][15] = 'o';
+    break;
+  }
+  switch(jet.des[2])
+  {
+    case 1:     
+      montrerDes[2][23] = 'o';        
+    break;
+    case 2:
+      montrerDes[1][25] = 'o';
+      montrerDes[3][21] = 'o';
+    break;
+    case 3:
+      montrerDes[1][25] = 'o';
+      montrerDes[2][23] = 'o';
+      montrerDes[3][21] = 'o';        
+    break;
+    case 4:
+      montrerDes[1][21] = 'o';
+      montrerDes[1][25] = 'o';
+      montrerDes[3][21] = 'o';
+      montrerDes[3][25] = 'o';
+    break;
+    case 5:
+      montrerDes[1][21] = 'o';
+      montrerDes[1][25] = 'o';
+      montrerDes[2][23] = 'o';  
+      montrerDes[3][21] = 'o';
+      montrerDes[3][25] = 'o';
+    break;
+    case 6:
+      montrerDes[1][21] = 'o';
+      montrerDes[1][25] = 'o';
+      montrerDes[1][23] = 'o';
+      montrerDes[3][23] = 'o';
+      montrerDes[3][21] = 'o';
+      montrerDes[3][25] = 'o';
+    break;
+  }
+  switch(jet.des[3])
+  {
+    case 1:     
+      montrerDes[2][33] = 'o';        
+    break;
+    case 2:
+      montrerDes[1][35] = 'o';
+      montrerDes[3][31] = 'o';
+    break;
+    case 3:
+      montrerDes[1][35] = 'o';
+      montrerDes[2][33] = 'o';
+      montrerDes[3][31] = 'o';        
+    break;
+    case 4:
+      montrerDes[1][31] = 'o';
+      montrerDes[1][35] = 'o';
+      montrerDes[3][31] = 'o';
+      montrerDes[3][35] = 'o';
+    break;
+    case 5:
+      montrerDes[1][31] = 'o';
+      montrerDes[1][35] = 'o';
+      montrerDes[2][33] = 'o';  
+      montrerDes[3][31] = 'o';
+      montrerDes[3][35] = 'o';
+    break;
+    case 6:
+      montrerDes[1][31] = 'o';
+      montrerDes[1][35] = 'o';
+      montrerDes[1][33] = 'o';
+      montrerDes[3][33] = 'o';
+      montrerDes[3][31] = 'o';
+      montrerDes[3][35] = 'o';
+    break;
+  }
+  switch(jet.des[4])
+  {
+    case 1:     
+      montrerDes[2][43] = 'o';        
+    break;
+    case 2:
+      montrerDes[1][45] = 'o';
+      montrerDes[3][41] = 'o';
+    break;
+    case 3:
+      montrerDes[1][45] = 'o';
+      montrerDes[2][43] = 'o';
+      montrerDes[3][41] = 'o';        
+    break;
+    case 4:
+      montrerDes[1][41] = 'o';
+      montrerDes[1][45] = 'o';
+      montrerDes[3][41] = 'o';
+      montrerDes[3][45] = 'o';
+    break;
+    case 5:
+      montrerDes[1][41] = 'o';
+      montrerDes[1][45] = 'o';
+      montrerDes[2][43] = 'o';  
+      montrerDes[3][41] = 'o';
+      montrerDes[3][45] = 'o';
+    break;
+    case 6:
+      montrerDes[1][41] = 'o';
+      montrerDes[1][45] = 'o';
+      montrerDes[1][43] = 'o';
+      montrerDes[3][43] = 'o';
+      montrerDes[3][41] = 'o';
+      montrerDes[3][45] = 'o';
+    break;
+  }   
+  for(rangee = 0; rangee < 5; rangee++)
+  {
+    for(colonne = 0; colonne < 47; colonne++)
+    {
+      printf("%c",montrerDes[rangee][colonne]);
+    }
+    printf("\n");
+  }
 }
