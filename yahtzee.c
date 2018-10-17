@@ -111,7 +111,7 @@ int chance(Jet teste)
  {
     int somme = 0;
 
-    for (int i = 0; i < 5; ++i)
+    for ( int i = 0; i < 5; ++i)
      
       somme = somme + teste.des[i]; 
       

@@ -73,12 +73,13 @@ void ordonner(int* a, int* b, int* c, int* d, int* e)
 int main(int argc, char const *argv[])
 {
 	Jet ig;
+	
 
-	ig.des[0] = 5;
-	ig.des[1] = 4;
-	ig.des[2] = 3;
-	ig.des[3] = 1;
-	ig.des[4] = 2;
+	ig.des[0] = 2;
+	ig.des[1] = 3;
+	ig.des[2] = 4;
+	ig.des[3] = 5;
+	ig.des[4] = 6;
 
 
 	printf("%d\n", grandsuite(ig));
@@ -89,7 +90,70 @@ int main(int argc, char const *argv[])
 
 
 int grandsuite(Jet ig){
+	int face1, face2, face3, face4, face5, face6;
+	face1 = 0;
+	face2 = 0;
+	face3 = 0;
+	face4 = 0;
+	face5 = 0;
+	face6 = 0;
+	int compara = 0;
+
 	ordonner(&ig.des[0], &ig.des[1], &ig.des[2], &ig.des[3], &ig.des[4]);
+
+	for (int i = 1; i < 6; ++i)
+	{
+		for(int j = 0; j < 6; j++)
+		{
+			if(ig.des[j] == i)
+			{
+			
+			
+			}
+		}
+	}	
+return compara;
+
+}		
+
+
+		/*
+		
+		if(ig.des[i] == 1){
+			face1++;
+		}
+		if (ig.des[i] == 2)
+		{
+			face2++;
+		}
+		if (ig.des[i] == 3)
+		{
+			face3++;
+		}
+		if (ig.des[i] == 4)
+		{
+			face4++;
+		}
+		if (ig.des[i] == 5)
+		{
+			face5++;
+		}
+		if (ig.des[i] == 6)
+		{
+			face6++;
+		}
+		
+	}
+	
+
+	printf("%d %d %d %d %d %d\n", face1, face2, face3, face4, face5, face6);
+	
+	return 0;
+
+}
+
+
+ordonner(&ig.des[0], &ig.des[1], &ig.des[2], &ig.des[3], &ig.des[4]);
 	//printf("%d %d %d %d %d \n", ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
 	int c = 0;
 	for (int i = 0; i < 5; ++i)
@@ -106,15 +170,12 @@ int grandsuite(Jet ig){
 		}
 	}
 	return c;
-}
 
 
 
 
 
-/*
 //conditionnel pour vérifier si le sequence est de 1 à 5 ou de 2 à 6 en utilisant le "if"
-
 if ((&ig.des[0] == 1) && (&ig.des[1] == 2) && (&ig.des[2] == 3) && (&ig.des[3] == 4) && (&ig.des[4] == 5)
 	{
 		printf("50 points d'un grandsuite\n");		
@@ -132,7 +193,6 @@ if ((&ig.des[0] == 1) && (&ig.des[1] == 2) && (&ig.des[2] == 3) && (&ig.des[3] =
 /*
 	while(diferent)
 	{
-
 		for (int i = 0; i < 4; ++i)
 		{
 			if(ig.des[i] > ig.des[i+1])
@@ -141,16 +201,13 @@ if ((&ig.des[0] == 1) && (&ig.des[1] == 2) && (&ig.des[2] == 3) && (&ig.des[3] =
 				ig.des[i+1] = ig.des[i];
 				ig.des[i] = aux;
 				printf("pos 0= %d - pos 1: %d - pos 2= %d - pos 3: %d - pos 4: %d", ig.des[i], ig.des[i+1], ig.des[i+2], ig.des[i+3], ig.des[i+4], ig.des[i+5]);
-
 				//printf("%d\n%d\n%d\n%d\n%d\n", ig.des[0], ig.des[1], ig.des[2], ig.des[3], ig.des[4]);
 			}
 			else diferent = 0;
-
 		}
 	}
 	return 0;
 }
-
 */
 
 

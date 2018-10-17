@@ -29,12 +29,16 @@ struct score
 };
 
 Jet jogada (Jet jet);
+<<<<<<< HEAD
 int nbDeFace1(Jet jet);
 int nbDeFace2(Jet jet);
 int nbDeFace3(Jet jet);
 int nbDeFace4(Jet jet);
 int nbDeFace5(Jet jet);
 int nbDeFace6(Jet jet);
+=======
+int nbDeFace(Jet jet);
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
 int brelan(Jet jet);
 int carre(Jet jet);
 int mainPleine(Jet jet);
@@ -48,8 +52,20 @@ void dessineDes(Jet jet);
 
 int main()
 {
+<<<<<<< HEAD
   char option;
+=======
+  
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
   Jet jet;
+  int i;
+
+
+//for(i = 0; i < 2; i++)
+//{
+
+//printf("\033c" );
+
   Jet jogadaFeita = jogada (jet);
   
 
@@ -58,12 +74,16 @@ int main()
  printf ("**********************\n");
  printf ("*                QUEL POINTAGE VOULEZ-VOUS GARDER?               *\n");
  printf ("**********************\n");
+<<<<<<< HEAD
  nbDeFace1(jogadaFeita);
  nbDeFace2(jogadaFeita);
  nbDeFace3(jogadaFeita);
  nbDeFace4(jogadaFeita);
  nbDeFace5(jogadaFeita);
  nbDeFace6(jogadaFeita);
+=======
+ nbDeFace (jogadaFeita);
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
  printf ("*  (G) - Pour le main plaine on a la valeur: %d\n", mainPleine (jogadaFeita));
  printf ("*  (H) - Pour le brelan on a la valeur: %d\n", brelan (jogadaFeita));
  printf ("*  (I) - Pour le carre on a la valeur: %d\n", carre (jogadaFeita));
@@ -74,6 +94,7 @@ int main()
  printf ("\n");
  printf ("**********************\n\n");
  
+<<<<<<< HEAD
 printf ("Choisissez votre jeu:");
 scanf ("%c", &option);
 
@@ -136,6 +157,13 @@ switch(option)
 
 
 
+=======
+
+
+//}
+
+
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
 }
 
  //****
@@ -158,7 +186,11 @@ switch(option)
   {
      n = rand() % MAX + MIN;
      jet.des[i] = n;
+<<<<<<< HEAD
      
+=======
+     //printf("%d  ", jet.des[i]);
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
   }
   printf("\n");
 
@@ -200,9 +232,17 @@ dessineDes(jet);
   
   return 0;
 }
+<<<<<<< HEAD
  //****
  //
  //***
+=======
+//*******
+//
+//
+//
+//******
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
 int chance(Jet teste)
  {
     int somme = 0;
@@ -214,9 +254,17 @@ int chance(Jet teste)
       return somme;
 
  }
+<<<<<<< HEAD
  //****
  //
  //***
+=======
+//*******
+//
+//
+//
+//*******
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
 int carre(Jet jet)
 {
   
@@ -270,9 +318,17 @@ int carre(Jet jet)
   return 0 ;
   
 }  
+<<<<<<< HEAD
  //****
  //
  //***
+=======
+//*******
+//
+//
+//
+//*******
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
 int brelan(Jet jet)
 {
   
@@ -326,12 +382,24 @@ int brelan(Jet jet)
   return 0 ;
   
 }
+<<<<<<< HEAD
  //****
  //
  //*** 
 int mainPleine(Jet jet)
 {
   
+=======
+//*******
+//
+//
+//
+//*******  
+int mainPleine(Jet jet)
+{
+  
+  int total = 0;
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
   int somme1 = 0;
   int somme2 = 0;
   int somme3 = 0;
@@ -407,12 +475,22 @@ int mainPleine(Jet jet)
   return 0 ;
   
 }
+<<<<<<< HEAD
  //****
+=======
+//****
+ //
+ //
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
  //
  //***
  int petiteSuite(Jet jet)
 {
   
+<<<<<<< HEAD
+=======
+  int total = 0;
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
   int somme1 = 0;
   int somme2 = 0;
   int somme3 = 0;
@@ -463,12 +541,23 @@ int mainPleine(Jet jet)
   return 0 ;
   
 }
+<<<<<<< HEAD
  //****
+=======
+//****
+ //
+ //
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
  //
  //***
  int grandeSuite(Jet jet)
 {
+<<<<<<< HEAD
 
+=======
+  
+  int total = 0;
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
   int somme1 = 0;
   int somme2 = 0;
   int somme3 = 0;
@@ -517,6 +606,7 @@ int mainPleine(Jet jet)
   return 0 ;
   
 }
+<<<<<<< HEAD
  //****
  //
  //****
@@ -528,6 +618,27 @@ int nbDeFace1 (Jet jet)
   int somme1 = 0;
   int somme1a = 0;
   
+=======
+//****
+ //
+ //
+ //
+ //***
+int nbDeFace (Jet jet)
+{
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+  int somme1a = 0;
+  int somme2a = 0;
+  int somme3a = 0;
+  int somme4a = 0;
+  int somme5a = 0;
+  int somme6a = 0;
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
   
       
       for (int i = 0; i < 5; ++i)
@@ -536,6 +647,7 @@ int nbDeFace1 (Jet jet)
               {
                 somme1 ++;
               }
+<<<<<<< HEAD
               
         }
  
@@ -557,10 +669,13 @@ int nbDeFace2 (Jet jet)
   
       for (int i = 0; i < 5; ++i)
         { 
+=======
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
               if (jet.des[i] == 2)
               {
                 somme2 ++;
               }
+<<<<<<< HEAD
               
         }
  
@@ -581,10 +696,13 @@ int nbDeFace3 (Jet jet)
     
       for (int i = 0; i < 5; ++i)
         { 
+=======
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
               if (jet.des[i] == 3)
               {
                 somme3 ++;
               }
+<<<<<<< HEAD
               
         }
  
@@ -605,10 +723,13 @@ int nbDeFace4 (Jet jet)
     
       for (int i = 0; i < 5; ++i)
         { 
+=======
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
               if (jet.des[i] == 4)
               {
                 somme4 ++;
               }
+<<<<<<< HEAD
               
         }
  
@@ -629,10 +750,13 @@ int nbDeFace5 (Jet jet)
    
       for (int i = 0; i < 5; ++i)
         { 
+=======
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
               if (jet.des[i] == 5)
               {
                 somme5 ++;
               }
+<<<<<<< HEAD
               
         }
  
@@ -653,10 +777,13 @@ int nbDeFace6 (Jet jet)
       
       for (int i = 0; i < 5; ++i)
         { 
+=======
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
               if (jet.des[i] == 6)
               {
                 somme6 ++;
               }
+<<<<<<< HEAD
               
         }
  
@@ -668,6 +795,50 @@ int nbDeFace6 (Jet jet)
   
 }
  //****
+=======
+        }
+ 
+  if (somme1 != 0)
+    somme1 *= 1;
+    somme1a = somme1;
+
+  if (somme2 != 0)
+    somme2 *= 2;
+    somme2a = somme2;
+
+  if (somme3 != 0)
+    somme3 *= 3;
+    somme3a = somme3;
+
+  if (somme4 != 0)
+    somme4 *= 4;
+    somme4a = somme4;
+
+  if (somme5 != 0)
+    somme5 *= 5;
+    somme5a = somme5;
+
+  if (somme6 != 0)
+    somme6 *= 6;
+    somme6a = somme6;
+
+
+  
+  printf ("*  (A) - Les valeurs de données avec la face 1 seront: %d\n", somme1a);
+  printf ("*  (B) - Les valeurs de données avec la face 2 seront: %d\n", somme2a);
+  printf ("*  (C) - Les valeurs de données avec la face 3 seront: %d\n", somme3a);
+  printf ("*  (D) - Les valeurs de données avec la face 4 seront: %d\n", somme4a);
+  printf ("*  (E) - Les valeurs de données avec la face 5 seront: %d\n", somme5a);
+  printf ("*  (F) - Les valeurs de données avec la face 6 seront: %d\n", somme6a);
+
+      
+  return 0;
+  
+}
+//****
+ //
+ //
+>>>>>>> cb063a063cb611ddd0a7b07289132b94cc9c6aa8
  //
  //***
 void dessineDes(Jet jet)
