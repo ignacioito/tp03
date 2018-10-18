@@ -283,7 +283,6 @@ int nbDeFace1 (Jet jet)
   return printf("*  (A) - Les valeurs de données avec la face 1 seront: %d\n", somme1a); 
 // La fonction renvoie le nombre de fois où le visage 1 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
 }
-
  //****
  //
  //***
