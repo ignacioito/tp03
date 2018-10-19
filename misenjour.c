@@ -24,9 +24,8 @@ struct Jet
   int des[5]; 
 
  }; 
-// Nous avons mis en place cette structure semblable à Jet dont le nom 
-// est Jet pour qu'elle puisse recevoir les valeurs des données jouées 
-// à chaque tour.
+// Nous avons mis en place cette structure semblable à Jet dont le nom est Jet pour qu'elle 
+// puisse recevoir les valeurs des données jouées à chaque tour.
 
 
 typedef struct Score Score;
@@ -47,12 +46,12 @@ struct Score
   int chance;
   int yahtzee;
 };
-// Nous avons mis en place cette structure semblable à Score dont le nom est Score pour qu'elle 
+// / Nous avons mis en place cette structure semblable à Score dont le nom est Score pour qu'elle 
 // puisse recevoir les valeurs des jeux choisis par l'utilisateur à chaque tour.
 
 
 Jet joue (Jet jet);
-void positionScore (struct Score score);
+//void positionScore (struct Score score);
 void dessineDes(Jet jet);
 int nbDeFace1(Jet jet);
 int nbDeFace2(Jet jet);
@@ -67,35 +66,34 @@ int petiteSuite(Jet jet);
 int grandeSuite(Jet jet);
 int yahtzee(Jet jet);
 int chance(Jet jet);
+// Nous faisons ici la déclaration de chacune des fonctions utilisées dans le jeu.
 
-//Nous faisons ici la déclaration de chaque fonction utilisé dans le jeu.
 
 int main()
 {
   
-
+  Score score = {0,0,0,0,0,0,0,0,0,0,0,0,0};
   Jet jet;
+  int scoreFinale = 0;
 
-  for (int i = 0; i < 3; ++i)
+printf ("\n\nATTENTION! UTILISEZ VOTRE CLAVIER UNIQUEMENT AVEC LES MAJUSCULE PENDANT LE JEU\n\n");
+
+  for (int i = 0; i < 13; ++i)
   {
     Jet jogadaFeita = joue (jet);
-    Score scoreFinal;
-    Score score;
     char option;
 
   
-   
-  
-     printf ("\n\n");
+     printf ("\n\n\n");
      printf ("**********************\n");
      printf ("*                QUEL POINTAGE VOULEZ-VOUS GARDER?               *\n");
      printf ("**********************\n");
-     nbDeFace1(jogadaFeita);
-     nbDeFace2(jogadaFeita);
-     nbDeFace3(jogadaFeita);
-     nbDeFace4(jogadaFeita);
-     nbDeFace5(jogadaFeita);
-     nbDeFace6(jogadaFeita);
+     printf ("*  (A) - Les valeurs avec le visage 1 ajouté: %d\n", nbDeFace1(jogadaFeita));
+     printf ("*  (B) - Les valeurs avec le visage 2 ajouté: %d\n", nbDeFace2(jogadaFeita));
+     printf ("*  (C) - Les valeurs avec le visage 3 ajouté: %d\n", nbDeFace3(jogadaFeita));
+     printf ("*  (D) - Les valeurs avec le visage 4 ajouté: %d\n", nbDeFace4(jogadaFeita));
+     printf ("*  (E) - Les valeurs avec le visage 5 ajouté: %d\n", nbDeFace5(jogadaFeita));
+     printf ("*  (F) - Les valeurs avec le visage 6 ajouté: %d\n", nbDeFace6(jogadaFeita));
      printf ("*  (G) - Pour le main plaine on a la valeur: %d\n", mainPleine (jogadaFeita));
      printf ("*  (H) - Pour le brelan on a la valeur: %d\n", brelan (jogadaFeita));
      printf ("*  (I) - Pour le carre on a la valeur: %d\n", carre (jogadaFeita));
@@ -104,11 +102,12 @@ int main()
      printf ("*  (L) - Pour le chance on a la valeur: %d\n", chance (jogadaFeita));
      printf ("*  (M) - Pour le yahtzee on a la valeur: %d\n", yahtzee (jogadaFeita));
      printf ("\n");
-     printf ("**********************\n\n");
+     printf ("**********************\n\n\n\n");
  
      printf ("ATENTION!!! CHOISISSEZ EN MAJUSCULE VOTRE JEU: ");
-
      scanf (" %c", &option);
+     // Ici, l'utilisateur est invité à choisir le jeu qu'il souhaite marquer. 
+     printf ("\n\n\n");
 
         switch(option)
           {
@@ -120,7 +119,7 @@ int main()
               score.deux = nbDeFace2(jogadaFeita);
               break;
 
-              case 'C': 
+              case 'C':
               score.trois = nbDeFace3(jogadaFeita);
               break;
 
@@ -166,9 +165,12 @@ int main()
 
           }
   
+              scoreFinale = (score.un + score.deux + score.trois + score.quatre + score.cinq + score.six +
+                            score.mainPleine + score.brelan + score.carre + score.petiteSuite + score.grandeSuite +
+                            score.chance + score.yahtzee);
 
       printf ("**********************\n");
-      printf ("*                      VOTRE SCORE                               *\n");
+      printf ("*                            SCORE                               *\n");
       printf ("**********************\n");
       printf("* (A) - Vous avez %d points dans la somme des données de valeur 1   \n", score.un);
       printf("* (B) - Vous avez %d points dans la somme des données de valeur 2 \n", score.deux);
@@ -183,11 +185,14 @@ int main()
       printf("* (K) - Vous avez %d points dans en grande suite   \n", score.grandeSuite);
       printf("* (L) - Vous avez %d points dans en chance   \n", score.chance);
       printf("* (M) - Vous avez %d points dans en yahtzee   \n\n", score.yahtzee);
-      printf ("**********************\n\n");
+      printf ("**********************\n");
+      printf ("\n*                      VOTRE SCORE:  %d                          *\n\n", scoreFinale);
+      printf ("**********************\n\n\n");
+}
+
 
 }
 
-}
  //****
  //
  //***
@@ -201,7 +206,7 @@ int main()
   int des[5];
   char quant [5];
   int n = 0;
-// Nous déclarons ici les trois variables utilisées dans chaque mouvement. 
+// Nous déclarons ici les trois variables utilisées dans chacun des mouvements. 
 
   printf("Voici cinq nombres pigés au hasard entre %d et %d : \n\n", MIN, MAX);
 // Ici, nous informons l'utilisateur qu'il y a cinq nombres choisis au hasard
@@ -210,7 +215,7 @@ int main()
   {
      n = rand() % MAX + MIN;
      jet.des[i] = n;
-// Ici nous avons couru un pour la première fois pour remplir le tableau en contenant
+// Ici nous avons couru un pour pour pour la première fois remplir le tableau contenant
 // les valeurs des données du premier coup.
      
   }
@@ -222,19 +227,18 @@ int main()
 
   for (int c = 0; c < 2; ++c)
   {
-
-// Les deux boucles suivant font lancer les dés deux fois plus
+// Ici, nous réglons ceci pour que nous puissions lancer les dés deux fois plus
 
     printf("\nEntrez 0 POUR CONSERVER la valeur des données ou entrez 1 POUR MODIFIER la valeur de chacune des cinq données.\n\n");
-// Nous demandons ici à l’utilisateur choisir les valeurs des données qui seront conservées et les valeurs
+// Nous demandons ici à l’utilisateur de choisir les valeurs des données qui seront conservées et les valeurs
 // des données qui seront modifiées, à la fois au deuxième et au troisième coup de chaque tour.
 
         for (int i = 0; i < 5; ++i)
         {
         scanf (" %c", &quant[i]);
         }
-// Ici, nous mettons un scanf pour que l’utilisateur puisse taper 0 ou 1 et, conserver ou changer les
-// valeurs des données de les deux derniers tours. Les valeurs 0 ou 1 sont reçues dans le tableau quant[]
+// Ici, nous mettons un scanf pour que l’utilisateur puisse taper 0 ou 1 et conserver ou changer le
+// valeur des données des deux derniers tours. Les valeurs 0 ou 1 sont reçues dans tableau quant []
         printf("\n");
 
         for (int i = 0; i < 5; ++i)
@@ -280,9 +284,10 @@ int nbDeFace1 (Jet jet)
     somme1a = somme1;
 // On multiplie ici le nombre de fois que la face 1 est apparue par la valeur de la face, qui dans ce cas est égale à 1.
       
-  return printf("*  (A) - Les valeurs de données avec la face 1 seront: %d\n", somme1a); 
+  return somme1a; 
 // La fonction renvoie le nombre de fois où le visage 1 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
 }
+
  //****
  //
  //***
@@ -307,7 +312,7 @@ int nbDeFace2 (Jet jet)
     somme2a = somme2;
 // On multiplie ici le nombre de fois que la face 2 est apparue par la valeur de la face, qui dans ce cas est égale à 2.
 
-  return printf("*  (B) - Les valeurs de données avec la face 2 seront: %d\n", somme2a);
+  return somme2a;
 // La fonction renvoie le nombre de fois où le visage 2 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
 }
 
@@ -335,7 +340,7 @@ int nbDeFace3 (Jet jet)
     somme3a = somme3;
 // On multiplie ici le nombre de fois que la face 3 est apparue par la valeur de la face, qui dans ce cas est égale à 3.
   
-  return printf("*  (C) - Les valeurs de données avec la face 3 seront: %d\n", somme3a);
+  return somme3a;
 // La fonction renvoie le nombre de fois où le visage 3 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
 }
 
@@ -362,7 +367,7 @@ int nbDeFace4 (Jet jet)
     somme4a = somme4;
 // On multiplie ici le nombre de fois que la face 4 est apparue par la valeur de la face, qui dans ce cas est égale à 4.
      
-  return printf("*  (D) - Les valeurs de données avec la face 4 seront: %d\n", somme4a);
+  return somme4a;
 // La fonction renvoie le nombre de fois où le visage 4 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
 }
 
@@ -389,7 +394,7 @@ int nbDeFace5 (Jet jet)
     somme5a = somme5;
 // On multiplie ici le nombre de fois que la face 5 est apparue par la valeur de la face, qui dans ce cas est égale à 5.
     
-  return printf("*  (E) - Les valeurs de données avec la face 5 seront: %d\n", somme5a);
+  return somme5a;
 // La fonction renvoie le nombre de fois où le visage 5 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
 }
 
@@ -416,7 +421,7 @@ int nbDeFace6 (Jet jet)
     somme6a = somme6;
 // On multiplie ici le nombre de fois que la face 6 est apparue par la valeur de la face, qui dans ce cas est égale à 6.
    
-  return printf("*  (F) - Les valeurs de données avec la face 6 seront: %d\n", somme6a);
+    return somme6a;
 // La fonction renvoie le nombre de fois où le visage 6 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
 }
 
