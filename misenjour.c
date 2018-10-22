@@ -45,6 +45,7 @@ struct Score
   int grandeSuite;
   int chance;
   int yahtzee;
+
 };
 // / Nous avons mis en place cette structure semblable à Score dont le nom est Score pour qu'elle 
 // puisse recevoir les valeurs des jeux choisis par l'utilisateur à chaque tour.
@@ -78,16 +79,16 @@ int main()
 
 printf ("\n\nATTENTION! UTILISEZ VOTRE CLAVIER UNIQUEMENT AVEC LES MAJUSCULE PENDANT LE JEU\n\n");
 
-  for (int i = 0; i < 13; ++i)
+  for (int i = 0; i < 2; ++i)
   {
     Jet jogadaFeita = joue (jet);
     char option;
 
   
      printf ("\n\n\n");
-     printf ("**********************\n");
+     printf ("******************************************************************\n");
      printf ("*                QUEL POINTAGE VOULEZ-VOUS GARDER?               *\n");
-     printf ("**********************\n");
+     printf ("******************************************************************\n\n");
      printf ("*  (A) - Les valeurs avec le visage 1 ajouté: %d\n", nbDeFace1(jogadaFeita));
      printf ("*  (B) - Les valeurs avec le visage 2 ajouté: %d\n", nbDeFace2(jogadaFeita));
      printf ("*  (C) - Les valeurs avec le visage 3 ajouté: %d\n", nbDeFace3(jogadaFeita));
@@ -102,7 +103,7 @@ printf ("\n\nATTENTION! UTILISEZ VOTRE CLAVIER UNIQUEMENT AVEC LES MAJUSCULE PEN
      printf ("*  (L) - Pour le chance on a la valeur: %d\n", chance (jogadaFeita));
      printf ("*  (M) - Pour le yahtzee on a la valeur: %d\n", yahtzee (jogadaFeita));
      printf ("\n");
-     printf ("**********************\n\n\n\n");
+     printf ("******************************************************************\n\n\n\n");
  
      printf ("ATENTION!!! CHOISISSEZ EN MAJUSCULE VOTRE JEU: ");
      scanf (" %c", &option);
