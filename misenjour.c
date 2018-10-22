@@ -18,6 +18,7 @@ afin de valider sa stratégie.
 #include <stdlib.h>
 #include <time.h>
 
+
 typedef struct Jet Jet;
 struct Jet
  {
@@ -193,8 +194,7 @@ printf ("\n\nATTENTION! UTILISEZ VOTRE CLAVIER UNIQUEMENT AVEC LES MAJUSCULE PEN
 
 
 }
-
- //****
+//****
  //
  //***
  Jet joue (Jet jet)
@@ -264,6 +264,7 @@ dessineDes(jet);
  //****
  //
  //***
+ 
 int nbDeFace1 (Jet jet)
 {
   int somme1 = 0;
