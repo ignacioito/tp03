@@ -3,7 +3,7 @@
 // Auteurs
 // Ignacio Ito
 // João Gustavo
-// Luis Gustavo
+// Luis Gustavomain
 // Travail Pratique 03 Introduction À La Programmation
 //
 /*
@@ -121,9 +121,9 @@ printf ("\n\nATTENTION! UTILISEZ VOTRE CLAVIER UNIQUEMENT AVEC LES MAJUSCULE PEN
                             score.mainPleine + score.brelan + score.carre + score.petiteSuite + score.grandeSuite +
                             score.chance + score.yahtzee);
 
-      printf ("**********************\n");
+      printf ("******************************************************************\n");
       printf ("*                            SCORE                               *\n");
-      printf ("**********************\n");
+      printf ("******************************************************************\n");
       printf("* (A) - Vous avez %d points dans la somme des données de valeur 1   \n", score.un);
       printf("* (B) - Vous avez %d points dans la somme des données de valeur 2 \n", score.deux);
       printf("* (C) - Vous avez %d points dans la somme des données de valeur 3   \n", score.trois);
@@ -137,9 +137,9 @@ printf ("\n\nATTENTION! UTILISEZ VOTRE CLAVIER UNIQUEMENT AVEC LES MAJUSCULE PEN
       printf("* (K) - Vous avez %d points dans en grande suite   \n", score.grandeSuite);
       printf("* (L) - Vous avez %d points dans en chance   \n", score.chance);
       printf("* (M) - Vous avez %d points dans en yahtzee   \n\n", score.yahtzee);
-      printf ("**********************\n");
+      printf ("******************************************************************\n");
       printf ("\n*                      VOTRE SCORE:  %d                          *\n\n", scoreFinale);
-      printf ("**********************\n\n\n");
+      printf ("******************************************************************\n\n\n");
 }
 
 
