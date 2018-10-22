@@ -1,6 +1,5 @@
-//y
-// Montreal QC 24 octobre de 2018
 //
+// Montreal QC 23 octobre de 2018
 // Auteurs
 // Ignacio Ito
 // João Gustavo
@@ -15,31 +14,25 @@ afin de valider sa stratégie.
 */ 
 // Professeure Rébecca Lapointe
 //
-// *****************************************************************************
-//
-// Nom : yahtzee.h
-//
-// Auteurs :  Luiz Gustavo
-//            João Gustavo
-//            Ignacio Ito
-//
-// Date : 24 octobre 2018
-//
-//
-// *****************************************************************************
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-#define TAILLE_JET 5
-
 typedef struct Jet Jet;
-struct Jet{
-  int des[TAILLE_JET];  
-};
+struct Jet
+ {
+  int des[5]; 
+
+ }; 
+// Nous avons mis en place cette structure semblable à Jet dont le nom est Jet pour qu'elle 
+// puisse recevoir les valeurs des données jouées à chaque tour.
+
+
 typedef struct Score Score;
-struct Score{
-  int une;
+struct Score
+{
+  
+  int un;
   int deux;
   int trois;
   int quatre;
@@ -50,17 +43,22 @@ struct Score{
   int mainPleine;
   int petiteSuite;
   int grandeSuite;
-  int yahtzee;
   int chance;
-  int scores[13]; 
+  int yahtzee;
 };
+// / Nous avons mis en place cette structure semblable à Score dont le nom est Score pour qu'elle 
+// puisse recevoir les valeurs des jeux choisis par l'utilisateur à chaque tour.
 
-void testJouer(Jet jet);
-void match(Jet jet, Score score, int contreTour, int tour);
-int piger();
+
+Jet joue (Jet jet);
+//void positionScore (struct Score score);
 void dessineDes(Jet jet);
-Jet ordonne(Jet jet);
-int nbDeFace(Jet jet, int face);
+int nbDeFace1(Jet jet);
+int nbDeFace2(Jet jet);
+int nbDeFace3(Jet jet);
+int nbDeFace4(Jet jet);
+int nbDeFace5(Jet jet);
+int nbDeFace6(Jet jet);
 int brelan(Jet jet);
 int carre(Jet jet);
 int mainPleine(Jet jet);
@@ -68,484 +66,736 @@ int petiteSuite(Jet jet);
 int grandeSuite(Jet jet);
 int yahtzee(Jet jet);
 int chance(Jet jet);
-int pointFace(Jet jet, int valeur);
-void dessineFeuillePointage(Score score, int contreTour, int tour);
-void dessineFeuilleScore(Score score);
+// Nous faisons ici la déclaration de chacune des fonctions utilisées dans le jeu.
 
-main(){
-  int i;
-  const int tour = 13;
-  int contreTour = 1;
-  char test;
-  Jet jet;
-  Score score;
-  printf("\n\n Voulez-vous exÈcuter des tests?");
-  printf("\n\n Entrez 'S' pour OUI ou n'importe quelle touche pour continuer le jeu: ");
-  scanf(" %c", &test);
-  if(test == 's' || test == 'S') testJouer(jet);
-  else
-  { 
-  system("cls");    //para windows
-  //printf("\033c" );   para sistema unix 
-    for (i = 0; i < 13; i++)
-      {
-      score.scores[i] = 0;
-    }
-    do{   
-      match(jet, score, contreTour, tour);
-      contreTour++;
-    }while(contreTour <= tour); 
-  } 
-}
-// *****************************************************************************
-//
-//faz o teste
-//
-// *****************************************************************************
-void testJouer(Jet jet)
-{     
-  system("cls");    //para windows
-  //printf("\033c" );   para sistema unix 
-  printf("\n*************************** MODE TEST *****************************\n");        
-    printf("\n********* TEST FUNCTION: int nbDeFace(Jet jet, int face) **********\n\n");      
-  jet.des[0] = 5;
-  jet.des[1] = 5;
-  jet.des[2] = 1;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 1 - Face: %d - Pointage: %d\n\n",5, nbDeFace(jet,5));
-  jet.des[0] = 5;
-  jet.des[1] = 5;
-  jet.des[2] = 1;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 2 - Face: %d - Pointage: %d\n\n",1, nbDeFace(jet,1));
-  jet.des[0] = 5;
-  jet.des[1] = 5;
-  jet.des[2] = 1;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 3 - Face: %d - Pointage: %d\n\n",2, nbDeFace(jet,2));
-  jet.des[0] = 2;
-  jet.des[1] = 2;
-  jet.des[2] = 1;
-  jet.des[3] = 1;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 4 - Face: %d - Pointage: %d\n\n",2, nbDeFace(jet,2));
-  jet.des[0] = 4;
-  jet.des[1] = 5;
-  jet.des[2] = 1;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 5 - Face: %d - Pointage: %d\n\n",4, nbDeFace(jet,4));     
-    printf("\n************* TEST FUNCTION: int brelan(Jet jet) **************\n\n");
-  jet.des[0] = 5;
-  jet.des[1] = 5;
-  jet.des[2] = 1;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 1 - Pointage: %d\n\n",brelan(jet)); 
-  jet.des[0] = 2;
-  jet.des[1] = 2;
-  jet.des[2] = 1;
-  jet.des[3] = 5;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 2 - Pointage: %d\n\n",brelan(jet)); 
-  jet.des[0] = 4;
-  jet.des[1] = 2;
-  jet.des[2] = 4;
-  jet.des[3] = 5;
-  jet.des[4] = 4; 
-  dessineDes(jet);    
-  printf("\nTest: 3 - Pointage: %d\n\n",brelan(jet)); 
-  jet.des[0] = 5;
-  jet.des[1] = 5;
-  jet.des[2] = 1;
-  jet.des[3] = 5;
-  jet.des[4] = 5; 
-  dessineDes(jet);    
-  printf("\nTest: 4 - Pointage: %d\n\n",brelan(jet));
-  jet.des[0] = 2;
-  jet.des[1] = 3;
-  jet.des[2] = 3;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 5 - Pointage: %d\n\n",brelan(jet));       
-    printf("\n************* TEST FUNCTION: int carre(Jet jet) ***************\n\n");
-  jet.des[0] = 5;
-  jet.des[1] = 5;
-  jet.des[2] = 1;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 1 - Pointage: %d\n\n",carre(jet));  
-  jet.des[0] = 2;
-  jet.des[1] = 2;
-  jet.des[2] = 1;
-  jet.des[3] = 2;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 2 - Pointage: %d\n\n",carre(jet));
-  jet.des[0] = 5;
-  jet.des[1] = 1;
-  jet.des[2] = 1;
-  jet.des[3] = 1;
-  jet.des[4] = 1; 
-  dessineDes(jet);    
-  printf("\nTest: 3 - Pointage: %d\n\n",carre(jet));  
-  jet.des[0] = 6;
-  jet.des[1] = 6;
-  jet.des[2] = 6;
-  jet.des[3] = 2;
-  jet.des[4] = 6; 
-  dessineDes(jet);    
-  printf("\nTest: 4 - Pointage: %d\n\n",carre(jet));  
-  jet.des[0] = 3;
-  jet.des[1] = 3;
-  jet.des[2] = 3;
-  jet.des[3] = 3;
-  jet.des[4] = 6; 
-  dessineDes(jet);    
-  printf("\nTest: 5 - Pointage: %d\n\n",carre(jet));      
-    printf("\n*********** TEST FUNCTION: int mainPleine(Jet jet) ************\n\n");
-  jet.des[0] = 5;
-  jet.des[1] = 5;
-  jet.des[2] = 5;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 1 - Pointage: %d\n\n",mainPleine(jet)); 
-  jet.des[0] = 3;
-  jet.des[1] = 2;
-  jet.des[2] = 3;
-  jet.des[3] = 3;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 2 - Pointage: %d\n\n",mainPleine(jet)); 
-  jet.des[0] = 3;
-  jet.des[1] = 3;
-  jet.des[2] = 3;
-  jet.des[3] = 3;
-  jet.des[4] = 6; 
-  dessineDes(jet);    
-  printf("\nTest: 3 - Pointage: %d\n\n",mainPleine(jet)); 
-  jet.des[0] = 1;
-  jet.des[1] = 1;
-  jet.des[2] = 3;
-  jet.des[3] = 3;
-  jet.des[4] = 3; 
-  dessineDes(jet);    
-  printf("\nTest: 4 - Pointage: %d\n\n",mainPleine(jet)); 
-  jet.des[0] = 6;
-  jet.des[1] = 4;
-  jet.des[2] = 6;
-  jet.des[3] = 4;
-  jet.des[4] = 6; 
-  dessineDes(jet);    
-  printf("\nTest: 5 - Pointage: %d\n\n",mainPleine(jet));       
-    printf("\n*********** TEST FUNCTION: int petiteSuite(Jet jet) ***********\n");
-    jet.des[0] = 5;
-  jet.des[1] = 3;
-  jet.des[2] = 2;
-  jet.des[3] = 3;
-  jet.des[4] = 4; 
-  dessineDes(jet);    
-  printf("\nTest: 1 - Pointage: %d\n\n",petiteSuite(jet));
-  jet.des[0] = 2;
-  jet.des[1] = 3;
-  jet.des[2] = 5;
-  jet.des[3] = 6;
-  jet.des[4] = 1; 
-  dessineDes(jet);    
-  printf("\nTest: 2 - Pointage: %d\n\n",petiteSuite(jet));
-  jet.des[0] = 2;
-  jet.des[1] = 4;
-  jet.des[2] = 1;
-  jet.des[3] = 3;
-  jet.des[4] = 6; 
-  dessineDes(jet);    
-  printf("\nTest: 3 - Pointage: %d\n\n",petiteSuite(jet));
-  jet.des[0] = 5;
-  jet.des[1] = 4;
-  jet.des[2] = 3;
-  jet.des[3] = 4;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 4 - Pointage: %d\n\n",petiteSuite(jet));
-  jet.des[0] = 6;
-  jet.des[1] = 4;
-  jet.des[2] = 3;
-  jet.des[3] = 4;
-  jet.des[4] = 5; 
-  dessineDes(jet);    
-  printf("\nTest: 5 - Pointage: %d\n\n",petiteSuite(jet));        
-    printf("\n*********** TEST FUNCTION: int grandeSuite(Jet jet) ***********\n");
-    jet.des[0] = 5;
-  jet.des[1] = 3;
-  jet.des[2] = 2;
-  jet.des[3] = 6;
-  jet.des[4] = 4; 
-  dessineDes(jet);    
-  printf("\nTest: 1 - Pointage: %d\n\n",grandeSuite(jet));  
-  jet.des[0] = 2;
-  jet.des[1] = 3;
-  jet.des[2] = 5;
-  jet.des[3] = 6;
-  jet.des[4] = 1; 
-  dessineDes(jet);    
-  printf("\nTest: 2 - Pointage: %d\n\n",grandeSuite(jet));  
-  jet.des[0] = 6;
-  jet.des[1] = 4;
-  jet.des[2] = 3;
-  jet.des[3] = 2;
-  jet.des[4] = 5; 
-  dessineDes(jet);    
-  printf("\nTest: 3 - Pointage: %d\n\n",grandeSuite(jet));  
-  jet.des[0] = 4;
-  jet.des[1] = 2;
-  jet.des[2] = 3;
-  jet.des[3] = 1;
-  jet.des[4] = 5; 
-  dessineDes(jet);    
-  printf("\nTest: 4 - Pointage: %d\n\n",grandeSuite(jet));  
-  jet.des[0] = 4;
-  jet.des[1] = 3;
-  jet.des[2] = 1;
-  jet.des[3] = 1;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 5 - Pointage: %d\n\n",petiteSuite(jet));        
-    printf("\n************* TEST FUNCTION: int yahtzee(Jet jet) **************\n");
-    jet.des[0] = 2;
-  jet.des[1] = 2;
-  jet.des[2] = 2;
-  jet.des[3] = 2;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 1 - Pointage: %d\n\n",yahtzee(jet));  
-  jet.des[0] = 2;
-  jet.des[1] = 3;
-  jet.des[2] = 2;
-  jet.des[3] = 2;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 2 - Pointage: %d\n\n",yahtzee(jet));  
-  jet.des[0] = 6;
-  jet.des[1] = 6;
-  jet.des[2] = 6;
-  jet.des[3] = 6;
-  jet.des[4] = 6; 
-  dessineDes(jet);    
-  printf("\nTest: 3 - Pointage: %d\n\n",yahtzee(jet));  
-  jet.des[0] = 1;
-  jet.des[1] = 1;
-  jet.des[2] = 1;
-  jet.des[3] = 1;
-  jet.des[4] = 1; 
-  dessineDes(jet);    
-  printf("\nTest: 4 - Pointage: %d\n\n",yahtzee(jet));  
-  jet.des[0] = 4;
-  jet.des[1] = 3;
-  jet.des[2] = 1;
-  jet.des[3] = 1;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 5 - Pointage: %d\n\n",yahtzee(jet));        
-    printf("\n************** TEST FUNCTION: int chance(Jet jet) **************\n\n");
-    jet.des[0] = 5;
-  jet.des[1] = 6;
-  jet.des[2] = 2;
-  jet.des[3] = 1;
-  jet.des[4] = 4; 
-  dessineDes(jet);    
-  printf("\nTest: 1 - Pointage: %d\n\n",chance(jet));  
-  jet.des[0] = 1;
-  jet.des[1] = 1;
-  jet.des[2] = 1;
-  jet.des[3] = 1;
-  jet.des[4] = 3; 
-  dessineDes(jet);    
-  printf("\nTest: 2 - Pointage: %d\n\n",chance(jet));  
-  jet.des[0] = 6;
-  jet.des[1] = 6;
-  jet.des[2] = 6;
-  jet.des[3] = 6;
-  jet.des[4] = 6; 
-  dessineDes(jet);    
-  printf("\nTest: 3 - Pointage: %d\n\n",chance(jet));  
-  jet.des[0] = 1;
-  jet.des[1] = 4;
-  jet.des[2] = 1;
-  jet.des[3] = 6;
-  jet.des[4] = 1; 
-  dessineDes(jet);    
-  printf("\nTest: 4 - Pointage: %d\n\n",chance(jet));  
-  jet.des[0] = 4;
-  jet.des[1] = 3;
-  jet.des[2] = 1;
-  jet.des[3] = 1;
-  jet.des[4] = 2; 
-  dessineDes(jet);    
-  printf("\nTest: 5 - Pointage: %d\n\n",chance(jet));  
-  printf("\n\n****************** FIN DES TESTS *********************\n"); 
-}
-// *****************************************************************************
-//
-//Faz uma partida
-//
-// *****************************************************************************
-void match(Jet jet, Score score, int contreTour, int tour)
+
+int main()
 {
-  int i;
-  int sortir = 0; 
-  int echange[TAILLE_JET];
-  char echangeTour;
-  char optionScore;   
-  printf("\nTour %d.\n",contreTour);  
-  for(i = 0; i < TAILLE_JET; i++)
-  {  
-    jet.des[i] = piger();
-  }
-  dessineDes(jet);
-  for (echangeTour = 0; echangeTour < 2; echangeTour++)
-    {
-    printf("\nQuels des voulez-vous jeter a nouveau? (0 pour garder, 1 pour jeter)\n");
-    printf(">");
-    for (i = 0; i < TAILLE_JET; i++)
-      {
-          scanf (" %c", &echange[i]);
-      }
-      for (i = 0; i < TAILLE_JET; i++)
-      {
-          if (echange[i] == '1')
-          {             
-              jet.des[i] = piger();
+  
+  Score score = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+  Jet jet;
+  int scoreFinale = 0;
+
+printf ("\n\nATTENTION! UTILISEZ VOTRE CLAVIER UNIQUEMENT AVEC LES MAJUSCULE PENDANT LE JEU\n\n");
+
+  for (int i = 0; i < 13; ++i)
+  {
+    Jet jogadaFeita = joue (jet);
+    char option;
+
+  
+     printf ("\n\n\n");
+     printf ("**********************\n");
+     printf ("*                QUEL POINTAGE VOULEZ-VOUS GARDER?               *\n");
+     printf ("**********************\n");
+     printf ("*  (A) - Les valeurs avec le visage 1 ajouté: %d\n", nbDeFace1(jogadaFeita));
+     printf ("*  (B) - Les valeurs avec le visage 2 ajouté: %d\n", nbDeFace2(jogadaFeita));
+     printf ("*  (C) - Les valeurs avec le visage 3 ajouté: %d\n", nbDeFace3(jogadaFeita));
+     printf ("*  (D) - Les valeurs avec le visage 4 ajouté: %d\n", nbDeFace4(jogadaFeita));
+     printf ("*  (E) - Les valeurs avec le visage 5 ajouté: %d\n", nbDeFace5(jogadaFeita));
+     printf ("*  (F) - Les valeurs avec le visage 6 ajouté: %d\n", nbDeFace6(jogadaFeita));
+     printf ("*  (G) - Pour le main plaine on a la valeur: %d\n", mainPleine (jogadaFeita));
+     printf ("*  (H) - Pour le brelan on a la valeur: %d\n", brelan (jogadaFeita));
+     printf ("*  (I) - Pour le carre on a la valeur: %d\n", carre (jogadaFeita));
+     printf ("*  (J) - Pour le petite suite on a la valeur: %d\n", petiteSuite (jogadaFeita));
+     printf ("*  (K) - Pour le grande suite on a la valeur: %d\n", grandeSuite (jogadaFeita)); 
+     printf ("*  (L) - Pour le chance on a la valeur: %d\n", chance (jogadaFeita));
+     printf ("*  (M) - Pour le yahtzee on a la valeur: %d\n", yahtzee (jogadaFeita));
+     printf ("\n");
+     printf ("**********************\n\n\n\n");
+ 
+     printf ("ATENTION!!! CHOISISSEZ EN MAJUSCULE VOTRE JEU: ");
+     scanf (" %c", &option);
+     // Ici, l'utilisateur est invité à choisir le jeu qu'il souhaite marquer. 
+     printf ("\n\n\n");
+
+        switch(option)
+          {
+              case 'A': 
+              score.un = nbDeFace1(jogadaFeita);
+              break;
+            
+              case 'B': 
+              score.deux = nbDeFace2(jogadaFeita);
+              break;
+
+              case 'C':
+              score.trois = nbDeFace3(jogadaFeita);
+              break;
+
+              case 'D': 
+              score.quatre = nbDeFace4(jogadaFeita);
+              break;
+
+              case 'E': 
+              score.cinq = nbDeFace5(jogadaFeita);
+              break;
+
+              case 'F': 
+              score.six = nbDeFace6(jogadaFeita);
+              break;
+
+              case 'G': 
+              score.mainPleine = mainPleine(jogadaFeita);
+              break;
+            
+              case 'H': 
+              score.brelan = brelan(jogadaFeita);
+              break;
+
+              case 'I': 
+              score.carre = carre(jogadaFeita);
+              break;
+
+              case 'J': 
+              score.petiteSuite = petiteSuite(jogadaFeita);
+              break;
+
+              case 'K': 
+              score.grandeSuite = grandeSuite(jogadaFeita);
+              break;
+
+              case 'L': 
+              score.chance = chance(jogadaFeita);
+              break;
+
+              case 'M': 
+              score.yahtzee = yahtzee(jogadaFeita);
+              break;
+
           }
-      }
-      dessineDes(jet);
-  } 
-  score.une = nbDeFace(jet, 1);
-  score.deux = nbDeFace(jet, 2);
-  score.trois = nbDeFace(jet, 3);
-  score.quatre = nbDeFace(jet, 4);
-  score.cinq = nbDeFace(jet, 5);
-  score.six = nbDeFace(jet, 6);
-  score.brelan = brelan(jet);
-  score.carre = carre(jet);
-  score.mainPleine = mainPleine(jet);
-  score.petiteSuite = petiteSuite(jet);
-  score.grandeSuite = grandeSuite(jet);
-  score.yahtzee = yahtzee(jet);
-  score.chance = chance(jet); 
-  dessineFeuillePointage(score,contreTour,tour);    
-  do{
-  printf("\n");
-  printf(">");
-  scanf(" %c",&optionScore);
-  switch(optionScore){
-    case '1':
-      score.scores[0] = nbDeFace(jet, 1);
-      score.scores[13] = score.scores[13] + nbDeFace(jet, 1);
-      sortir = 0;
-    break;
-    case '2':
-      score.scores[1] = nbDeFace(jet, 2);
-      score.scores[13] = score.scores[13] + nbDeFace(jet, 2);
-      sortir = 0;
-    break;
-    case '3':
-      score.scores[2] = nbDeFace(jet, 3);
-      score.scores[13] = score.scores[13] + nbDeFace(jet, 3);
-      sortir = 0;
-    break;
-    case '4':
-      score.scores[3] = nbDeFace(jet, 4);
-      score.scores[13] = score.scores[13] + nbDeFace(jet, 4);
-      sortir = 0;
-    break;
-    case '5':
-      score.scores[4] = nbDeFace(jet, 5);
-      score.scores[13] = score.scores[13] + nbDeFace(jet, 5);
-      sortir = 0;
-    break;
-    case '6':
-      score.scores[5] = nbDeFace(jet, 6);
-      score.scores[13] = score.scores[13] + nbDeFace(jet, 6);
-      sortir = 0;
-    break;
-    case 'B':
-      score.scores[6] + brelan(jet);
-      score.scores[13] = score.scores[13] + brelan(jet);
-      sortir = 0;
-    break;
-    case 'C':
-      score.scores[7] + carre(jet);
-      score.scores[13] = score.scores[13] + carre(jet);
-      sortir = 0;
-    break;
-    case 'M':
-      score.scores[8] + carre(jet);
-      score.scores[13] = score.scores[13] + mainPleine(jet);
-      sortir = 0;
-    break;
-    case 'P':
-      score.scores[9] + petiteSuite(jet);
-      score.scores[13] = score.scores[13] + petiteSuite(jet);
-      sortir = 0;
-    break;
-    case 'G':
-      score.scores[10] + grandeSuite(jet);
-      score.scores[13] = score.scores[13] + grandeSuite(jet);
-      sortir = 0;
-    break;
-    case 'Y':
-      score.scores[11] + yahtzee(jet);
-      score.scores[13] = score.scores[13] + yahtzee(jet);
-      sortir = 0;
-    break;
-    case 'H':
-      score.scores[12] + chance(jet);
-      score.scores[13] = score.scores[13] + chance(jet);      
-      sortir = 0;     
-    break;
-    default:  printf("\n Option invalide!\n");
-          sortir = 1;   
+  
+              scoreFinale = (score.un + score.deux + score.trois + score.quatre + score.cinq + score.six +
+                            score.mainPleine + score.brelan + score.carre + score.petiteSuite + score.grandeSuite +
+                            score.chance + score.yahtzee);
+
+      printf ("**********************\n");
+      printf ("*                            SCORE                               *\n");
+      printf ("**********************\n");
+      printf("* (A) - Vous avez %d points dans la somme des données de valeur 1   \n", score.un);
+      printf("* (B) - Vous avez %d points dans la somme des données de valeur 2 \n", score.deux);
+      printf("* (C) - Vous avez %d points dans la somme des données de valeur 3   \n", score.trois);
+      printf("* (D) - Vous avez %d points dans la somme des données de valeur 4   \n", score.quatre);
+      printf("* (E) - Vous avez %d points dans la somme des données de valeur 5   \n", score.cinq);
+      printf("* (F) - Vous avez %d points dans la somme des données de valeur 6   \n", score.six);
+      printf("* (G) - Vous avez %d points dans en main plaine   \n", score.mainPleine);
+      printf("* (H) - Vous avez %d points dans en brelan   \n", score.brelan);
+      printf("* (I) - Vous avez %d points dans en carre   \n", score.carre);
+      printf("* (J) - Vous avez %d points dans en petite suite   \n", score.petiteSuite);
+      printf("* (K) - Vous avez %d points dans en grande suite   \n", score.grandeSuite);
+      printf("* (L) - Vous avez %d points dans en chance   \n", score.chance);
+      printf("* (M) - Vous avez %d points dans en yahtzee   \n\n", score.yahtzee);
+      printf ("**********************\n");
+      printf ("\n*                      VOTRE SCORE:  %d                          *\n\n", scoreFinale);
+      printf ("**********************\n\n\n");
+}
+
+
+}
+
+ //****
+ //
+ //***
+ Jet joue (Jet jet)
+ {
+  const int MIN = 1;
+  const int MAX = 6;
+  
+  srand(time(NULL));
+
+  int des[5];
+  char quant [5];
+  int n = 0;
+// Nous déclarons ici les trois variables utilisées dans chacun des mouvements. 
+
+  printf("Voici cinq nombres pigés au hasard entre %d et %d : \n\n", MIN, MAX);
+// Ici, nous informons l'utilisateur qu'il y a cinq nombres choisis au hasard
+
+  for (int i = 0; i < 5; ++i)
+  {
+     n = rand() % MAX + MIN;
+     jet.des[i] = n;
+// Ici nous avons couru un pour pour pour la première fois remplir le tableau contenant
+// les valeurs des données du premier coup.
+     
   }
-  }while(sortir);
-  dessineFeuilleScore(score);
+  printf("\n");
+
+  dessineDes(jet);
+// Nous appelons ici la fonction dessineDes pour que les valeurs obtenues dans le premier
+// les jeux sont représentés comme s'ils étaient des dés.
+
+  for (int c = 0; c < 2; ++c)
+  {
+// Ici, nous réglons ceci pour que nous puissions lancer les dés deux fois plus
+
+    printf("\nEntrez 0 POUR CONSERVER la valeur des données ou entrez 1 POUR MODIFIER la valeur de chacune des cinq données.\n\n");
+// Nous demandons ici à l’utilisateur de choisir les valeurs des données qui seront conservées et les valeurs
+// des données qui seront modifiées, à la fois au deuxième et au troisième coup de chaque tour.
+
+        for (int i = 0; i < 5; ++i)
+        {
+        scanf (" %c", &quant[i]);
+        }
+// Ici, nous mettons un scanf pour que l’utilisateur puisse taper 0 ou 1 et conserver ou changer le
+// valeur des données des deux derniers tours. Les valeurs 0 ou 1 sont reçues dans tableau quant []
+        printf("\n");
+
+        for (int i = 0; i < 5; ++i)
+        {
+         if (quant[i] == '1')
+         {
+          n = rand() % MAX + MIN;
+          jet.des[i] = n;
+         }
+// Ici, nous avons fait cela pour déterminer quelles données devaient être conservées et quelles données devaient être conservées.
+// a joué à nouveau, dans les deux derniers jeux de chaque tour.
+        }
+dessineDes(jet);
+// Ici, nous appelons la fonction dessineDes afin que les valeurs obtenues à la fois dans le deuxième et le troisième
+// dans le troisième coup sont représentés comme s'ils étaient des dés.
+        
+  }
+  return jet;
+// La fonction renvoie les valeurs dans une structure de type jet
+ }
+
+ //****
+ //
+ //***
+int nbDeFace1 (Jet jet)
+{
+  int somme1 = 0;
+  int somme1a = 0;
+// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              
+        }
+// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 1 est apparu à la fin des trois coups.
+ 
+  if (somme1 != 0)
+    somme1 *= 1;
+    somme1a = somme1;
+// On multiplie ici le nombre de fois que la face 1 est apparue par la valeur de la face, qui dans ce cas est égale à 1.
+      
+  return somme1a; 
+// La fonction renvoie le nombre de fois où le visage 1 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
 }
-// *****************************************************************************
-//
-//Gera numeros aleatorios entre 1 e 6
-//
-// *****************************************************************************
-int piger()
-{ 
-    const int MIN = 1;
-    const int MAX = 6;  
-    srand(time(NULL));  
-    return (rand() % MAX + MIN);  
+
+ //****
+ //
+ //***
+int nbDeFace2 (Jet jet)
+{
+  int somme2 = 0;
+  int somme2a = 0;
+// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              
+        }
+// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 2 est apparu à la fin des trois coups.
+ 
+  if (somme2 != 0)
+    somme2 *= 2;
+    somme2a = somme2;
+// On multiplie ici le nombre de fois que la face 2 est apparue par la valeur de la face, qui dans ce cas est égale à 2.
+
+  return somme2a;
+// La fonction renvoie le nombre de fois où le visage 2 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
 }
-// *****************************************************************************
-//
-//Desenha o dados
-//
-// *****************************************************************************
+
+ //****
+ //
+ //***
+int nbDeFace3 (Jet jet)
+{
+  int somme3 = 0;
+  int somme3a = 0;
+// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+    
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              
+        }
+// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 3 est apparu à la fin des trois coups.
+
+  if (somme3 != 0)
+    somme3 *= 3;
+    somme3a = somme3;
+// On multiplie ici le nombre de fois que la face 3 est apparue par la valeur de la face, qui dans ce cas est égale à 3.
+  
+  return somme3a;
+// La fonction renvoie le nombre de fois où le visage 3 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
+}
+
+ //****
+ //
+ //***
+int nbDeFace4 (Jet jet)
+{
+  int somme4 = 0;
+  int somme4a = 0;
+// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+    
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }        
+        }
+// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 4 est apparu à la fin des trois coups.  
+ 
+  if (somme4 != 0)
+    somme4 *= 4;
+    somme4a = somme4;
+// On multiplie ici le nombre de fois que la face 4 est apparue par la valeur de la face, qui dans ce cas est égale à 4.
+     
+  return somme4a;
+// La fonction renvoie le nombre de fois où le visage 4 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
+}
+
+ //****
+ //
+ //***
+int nbDeFace5 (Jet jet)
+{
+  int somme5 = 0;
+  int somme5a = 0;
+// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+   
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }          
+        }
+ // Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 5 est apparu à la fin des trois coups.
+
+  if (somme5 != 0)
+    somme5 *= 5;
+    somme5a = somme5;
+// On multiplie ici le nombre de fois que la face 5 est apparue par la valeur de la face, qui dans ce cas est égale à 5.
+    
+  return somme5a;
+// La fonction renvoie le nombre de fois où le visage 5 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
+}
+
+ //****
+ //
+ //***
+int nbDeFace6 (Jet jet)
+{
+  int somme6 = 0;
+  int somme6a = 0;
+// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }       
+        }
+// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 6 est apparu à la fin des trois coups.  
+
+  if (somme6 != 0)
+    somme6 *= 6;
+    somme6a = somme6;
+// On multiplie ici le nombre de fois que la face 6 est apparue par la valeur de la face, qui dans ce cas est égale à 6.
+   
+    return somme6a;
+// La fonction renvoie le nombre de fois où le visage 6 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
+}
+
+ //****
+ //
+ //***
+int mainPleine(Jet jet)
+{
+  
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+// Nous déclarons ici les six variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+// Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
+// le nombre de fois que chacune des cinq données apparaît
+            
+            if (((somme1 == 3) && (somme2 == 2)) ||
+                ((somme1 == 3) && (somme3 == 2)) ||
+                ((somme1 == 3) && (somme4 == 2)) ||
+                ((somme1 == 3) && (somme5 == 2)) ||
+                ((somme1 == 3) && (somme6 == 2)) ||
+                ((somme2 == 3) && (somme1 == 2)) ||
+                ((somme2 == 3) && (somme3 == 2)) ||
+                ((somme2 == 3) && (somme4 == 2)) ||
+                ((somme2 == 3) && (somme5 == 2)) ||
+                ((somme2 == 3) && (somme6 == 2)) ||
+                ((somme3 == 3) && (somme1 == 2)) ||
+                ((somme3 == 3) && (somme2 == 2)) ||
+                ((somme3 == 3) && (somme4 == 2)) ||
+                ((somme3 == 3) && (somme5 == 2)) ||
+                ((somme3 == 3) && (somme6 == 2)) ||
+                ((somme4 == 3) && (somme1 == 2)) ||
+                ((somme4 == 3) && (somme2 == 2)) ||
+                ((somme4 == 3) && (somme3 == 2)) ||
+                ((somme4 == 3) && (somme5 == 2)) ||
+                ((somme4 == 3) && (somme6 == 2)) ||
+                ((somme5 == 3) && (somme1 == 2)) ||
+                ((somme5 == 3) && (somme2 == 2)) ||
+                ((somme5 == 3) && (somme3 == 2)) ||
+                ((somme5 == 3) && (somme4 == 2)) ||
+                ((somme5 == 3) && (somme6 == 2)) ||
+                ((somme6 == 3) && (somme1 == 2)) ||
+                ((somme6 == 3) && (somme2 == 2)) ||
+                ((somme6 == 3) && (somme3 == 2)) ||
+                ((somme6 == 3) && (somme4 == 2)) ||
+                ((somme6 == 3) && (somme5 == 2)))
+// Nous écrivons ici les conditions dans lesquelles une main plaine peut se produire      
+            {
+              return 25; 
+            }
+      
+  return 0 ;
+// Si une condition du main pleine est satisfaite, la fonction renvoie 25, sinon elle renvoie 0.
+}
+ //****
+ //
+ //***
+int brelan(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+// Nous déclarons ici les sept variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  
+  for (int i = 0; i < 5; ++i)
+    {
+      total = total + jet.des[i]; 
+    }
+// Ici nous avons fait un for pour déterminer la somme de toutes les faces des données à la fin des trois tours de chaque tour.
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+// Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
+// le nombre de fois que chacune des cinq données apparaît.
+            
+            if ((somme1 >= 3) || (somme2 >= 3) || (somme3 >= 3) || (somme4 >= 3) || (somme5 >= 3) || (somme6 >= 3))
+// Nous écrivons ici les conditions dans lesquelles une brelan peut se produire.
+            {
+              return total; 
+            }
+      
+  return 0 ;
+// Si l'une des conditions du brelan est remplie, la fonction renvoie la valeur de somme de toutes
+// les données à la fin du troisième mouvement, sinon elle renvoie 0. 
+}
+
+ //****
+ //
+ //*** 
+int carre(Jet jet)
+{
+  
+  int total = 0;
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+// Nous déclarons ici les sept variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  
+
+  for (int i = 0; i < 5; ++i)
+    {
+      total = total + jet.des[i]; 
+    }
+// Ici nous avons fait un for pour déterminer la somme de toutes les faces des données à la fin des trois tours de chaque tour.
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+// Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
+// le nombre de fois que chacune des cinq données apparaît.
+            
+            if ((somme1 >= 4) || (somme2 >= 4) || (somme3 >= 4) || (somme4 >= 4) || (somme5 >= 4) || (somme6 >= 4))
+// Nous écrivons ici les conditions dans lesquelles une carre peut se produire.
+            {
+              return total; 
+            }
+      
+  return 0 ;
+// Si l'une des conditions du carre est remplie, la fonction renvoie la valeur de somme de toutes
+// les données à la fin du troisième mouvement, sinon elle renvoie 0.  
+} 
+
+ //****
+ //
+ //***
+
+ int petiteSuite(Jet jet)
+{
+  
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+// Nous déclarons ici les six variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+// Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
+// le nombre de fois que chacune des cinq données apparaît.
+            
+            if (((somme1 >= 1) && (somme2 >= 1) && (somme3 >= 1) &&
+                (somme4 >= 1)) ||
+                ((somme2 >= 1) && (somme3 >= 1) && (somme4 >= 1) &&
+                (somme5 >= 1)) ||
+                ((somme3 >= 1) && (somme4 >= 1) && (somme5 >= 1) &&
+                (somme6 >= 1)))
+// Nous écrivons ici les conditions dans lesquelles une petite suite peut se produire.   
+            {
+              return 30; 
+            }
+      
+  return 0 ;
+// Si une condition du petite suite est satisfaite, la fonction renvoie 30, sinon elle renvoie 0.
+}
+
+ //****
+ //
+ //***
+ int grandeSuite(Jet jet)
+{
+
+  int somme1 = 0;
+  int somme2 = 0;
+  int somme3 = 0;
+  int somme4 = 0;
+  int somme5 = 0;
+  int somme6 = 0;
+// Nous déclarons ici les six variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  
+      
+      for (int i = 0; i < 5; ++i)
+        { 
+              if (jet.des[i] == 1)
+              {
+                somme1 ++;
+              }
+              if (jet.des[i] == 2)
+              {
+                somme2 ++;
+              }
+              if (jet.des[i] == 3)
+              {
+                somme3 ++;
+              }
+              if (jet.des[i] == 4)
+              {
+                somme4 ++;
+              }
+              if (jet.des[i] == 5)
+              {
+                somme5 ++;
+              }
+              if (jet.des[i] == 6)
+              {
+                somme6 ++;
+              }
+        }
+// Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
+// le nombre de fois que chacune des cinq données apparaît.
+            
+            if (((somme1 == 1) && (somme2 == 1) && (somme3 == 1) &&
+                (somme4 == 1) && (somme5 == 1)) ||
+                ((somme2 == 1) && (somme3 == 1) && (somme4 == 1) &&
+                (somme5 == 1) && (somme6 == 1)))
+// Nous écrivons ici les conditions dans lesquelles une grande suite peut se produire.       
+            {
+              return 40; 
+            }
+      
+  return 0 ;
+// Si une condition du grande suite est satisfaite, la fonction renvoie 40, sinon elle renvoie 0. 
+}
+ 
+ //****
+ //
+ //****
+int chance(Jet teste)
+ {
+    int somme = 0;
+// Ici, nous déclarons la variable de type int de paramètres locaux que nous allons utiliser dans la fonction.
+
+    for (int i = 0; i < 5; ++i)
+     
+      somme = somme + teste.des[i]; 
+      
+      return somme;
+// Ici nous avons fait un for pour déterminer la somme de toutes les faces des données à la fin du troisième tour de chaque tour.
+// Nous demandons également que la valeur de la somme des données renvoie la fonction.
+
+ }
+ //****
+ //
+ //***
+ int yahtzee(Jet jet)
+ {
+    if((jet.des[0] == jet.des[1]) && (jet.des[1] == jet.des[2]) && (jet.des[2]== jet.des[3]) && (jet.des[3]== jet.des[4])) 
+// Ici nous avons fait la condition pour qu'un yahtzee soit fait.
+    {
+      return 50;
+    }
+  
+  return 0;
+// Si la condition du yahtzee est satisfaite, la fonction renvoie 50, sinon elle renvoie 0.
+}
+
+ //****
+ //
+ //***
 void dessineDes(Jet jet)
-{ 
+{
+  
   int rangee;
   int colonne;
   int JetGauche = 0;
   int JetDroite = 6;  
-  char montrerDes[5][47];   
+  char montrerDes[5][47];
+  
+  
   for(rangee = 0; rangee < 5; rangee++)
   {
     for(colonne = 0; colonne < 47; colonne++)
@@ -763,245 +1013,4 @@ void dessineDes(Jet jet)
     }
     printf("\n");
   }
-}
-// *****************************************************************************
-//
-//Ordena o vetor Jet com a tecnica Selection Sort
-//
-// *****************************************************************************
-Jet ordonne(Jet jet)
-{
-  int i;
-  int j;
-  int minimum;
-  int aux;
-  for (i = 0; i < (TAILLE_JET - 1); i++) 
-    {
-      minimum = i;
-    for (j = (i + 1); j < TAILLE_JET; j++) 
-      {
-            if(jet.des[j] < jet.des[minimum]) minimum = j;
-        }
-      if (jet.des[i] != jet.des[minimum])
-      {
-            aux = jet.des[i];
-            jet.des[i] = jet.des[minimum];
-            jet.des[minimum] = aux;
-        }
-    } 
-  return jet; 
-}
-// *****************************************************************************
-//
-//Conta quantas faces informadas tem no jet
-//
-// *****************************************************************************
-int nbDeFace(Jet jet, int face)
-{
-  int i;
-  int contre = 0;
-  for(i = 0; i < TAILLE_JET; i++)
-  {
-    if(jet.des[i] == face ) contre++;
-  }
-  return (contre * face);
-}
-// *****************************************************************************
-//
-//Tres dados iguais
-//
-// *****************************************************************************
-int brelan(Jet jet)
-{
-  return pointFace(jet,3);
-}
-// *****************************************************************************
-//
-//Quatro dados iguais
-//
-// *****************************************************************************
-int carre(Jet jet)
-{
-  return pointFace(jet,4);
-}
-// *****************************************************************************
-//
-//Tres dados iguais e dois dados iguais
-//
-// *****************************************************************************
-int mainPleine(Jet jet)
-{ 
-  int i;
-  int j;
-  int contre = 0;
-  int garde[2] = {2,3};
-  for(i = 0; i < TAILLE_JET; i++)
-  {
-    for(j = 0; j < TAILLE_JET; j++)
-    {
-      if(jet.des[i] == jet.des[j]) contre++;      
-    }   
-    switch(contre)
-    {
-      case 2:
-        garde[0] = 1; 
-      break;
-      case 3:
-        garde[1] = 1;
-      break;
-    } 
-  }
-  if(garde[0] == garde[1]) return 25;
-  else return 25;
-}
-// *****************************************************************************
-//
-//Os quatro dados formando uma sequencia
-//
-// *****************************************************************************
-int petiteSuite(Jet jet)
-{
-  int i;
-  int j;
-  int contre = 0;
-  Jet jetPetite = ordonne(jet);
-  for(i = 0; i < 2; i++)
-  { 
-    for(j = i+1; j < TAILLE_JET; j++)
-    {
-      if(jetPetite.des[j] + 1 == jetPetite.des[j+1]) contre++;          
-    }   
-    if(contre == 4) return 30;    
-  } 
-  return 30;
-}
-// *****************************************************************************
-//
-//Os cinco dados formando uma sequencia
-//
-// *****************************************************************************
-int grandeSuite(Jet jet)
-{
-  int i;
-  int j;
-  int contre = 0;
-  Jet jetPetite = ordonne(jet);
-  for(i = 0; i < 1; i++)
-  { 
-    for(j = i+1; j < TAILLE_JET; j++)
-    {
-      if(jetPetite.des[j] + 1 == jetPetite.des[j+1]) contre++;          
-    }
-    if(contre == 5) return 40;    
-  } 
-  return 40;
-}
-// *****************************************************************************
-//
-//Todas as faces iguais
-//
-// *****************************************************************************
-int yahtzee(Jet jet)
-{
-  int i;
-  int j;
-  int contre = 0; 
-  for(i = 0; i < TAILLE_JET; i++)
-  { 
-    for(j = i+1; j < TAILLE_JET; j++)
-    {
-      if(jet.des[j] + 1 == jet.des[j+1]) contre++;          
-    }   
-  }
-  if(contre == 5) return 50;
-  else return 50;
-}
-// *****************************************************************************
-//
-//Soma de todas as faces
-//
-// *****************************************************************************
-int chance(Jet jet)
-{
-  int i;
-  int contre = 0;
-  for(i = 0; i < TAILLE_JET; i++)
-  {
-    contre = contre + jet.des[i];
-  }
-  return contre;
-}
-// *****************************************************************************
-//
-//Soma as aparicoes de um valor em um Jet
-//
-// *****************************************************************************
-int pointFace(Jet jet, int valeur)
-{
-
-  int i;
-  int j;
-  int z;
-  int contre = 0;
-  for(i = 0; i < TAILLE_JET; i++)
-  {
-    for(j = 0; j < TAILLE_JET; j++)
-    {
-      if(jet.des[i] == jet.des[j]) contre++;
-      else if(contre == valeur) 
-      {
-        contre = 0;
-        for(z = 0; z < TAILLE_JET; z++)
-        {
-          contre = contre + jet.des[z]; 
-        } 
-      }return contre;
-    } 
-  } 
-  return 0;
-}
-// *****************************************************************************
-//
-//Desenha a folha de pontuacao
-//
-// *****************************************************************************
-void dessineFeuillePointage(Score score, int contreTour, int tour)
-{
-  printf("\n**********************************************\n");
-  printf("*    QUEL POINTAGE VOULEZ-VOUS GARDER?       *\n");
-  printf("**********************************************\n");
-  printf("*     (1) :  0       *       (B)relan = 10   *\n",score.une, score.brelan);
-  printf("*     (2) :  0       *        (C)arre = 10   *\n",score.deux, score.carre);
-  printf("*     (3) :  0       *  (M)ain Pleine = 10   *\n",score.trois, score.mainPleine);
-  printf("*     (4) :  0       * (P)etite suite = 10   *\n",score.quatre, score.petiteSuite);
-  printf("*     (5) :  0       * (G)rande suite = 10   *\n",score.cinq, score.grandeSuite);
-  printf("*     (6) :  0       *      (Y)ahtzee = 10   *\n", score.six, score.yahtzee);
-  printf("*                    *       C(H)ance = 10   *\n", score.chance);
-  printf("**********************************************\n");
-}
-// *****************************************************************************
-//
-//Desenha a folha de score
-//
-// *****************************************************************************
-void dessineFeuilleScore(Score score)
-{
-  printf("************************************************************************************\n");
-  printf("*                              FEUILLE DE SCORE TOUR  1/13                         *\n");
-  printf("************************************************************************************\n");
-  printf("\n");
-  printf("********** Partie superieure **********     ********** Partie inferieure ***********\n");
-  printf("*                                     *     *                                      *\n");
-  printf("*               1 :  %d                *     *              Brelan =  %d             *\n",score.scores[0], score.scores[6]);
-  printf("*               2 :  %d                *     *               Carre =  %d             *\n",score.scores[1], score.scores[7]);
-  printf("*               3 :  %d                *     *         Main pleine =  %d             *\n",score.scores[2], score.scores[8]);
-  printf("*               4 :  %d                *     *        Petite suite =  %d             *\n",score.scores[3], score.scores[9]);
-  printf("*               5 :  %d                *     *        Grande suite =  %d             *\n",score.scores[4], score.scores[10]);
-  printf("*               6 :  %d                *     *             Yahtzee =  %d             *\n",score.scores[5], score.scores[11]);
-  printf("*                                     *     *              Chance =  %d             *\n",score.scores[12]);
-  printf("***************************************     ****************************************\n");
-  printf("\n");
-  printf("************************************************************************************\n");
-  printf("*                                 Score =   %d                                     *\n",score.scores[13]);
-  printf("************************************************************************************\n"); 
 }
