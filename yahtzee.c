@@ -1,11 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
+#include <stdio.h> teste
+#include <stdlib.h>
+#include <time.h>
 #include "yahtzee.h"
 
-//****
- //
- //***
+
  Jet joue (Jet jet)
  {
   const int MIN = 1;
@@ -70,9 +68,7 @@ dessineDes(jet);
 // La fonction renvoie les valeurs dans une structure de type jet
  }
 
- //****
- //
- //***
+//
  
 int nbDeFace1 (Jet jet)
 {
@@ -99,9 +95,8 @@ int nbDeFace1 (Jet jet)
 // La fonction renvoie le nombre de fois où le visage 1 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
 }
 
- //****
- //
- //***
+//
+
 int nbDeFace2 (Jet jet)
 {
   int somme2 = 0;
@@ -127,9 +122,8 @@ int nbDeFace2 (Jet jet)
 // La fonction renvoie le nombre de fois où le visage 2 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
 }
 
- //****
- //
- //***
+//
+
 int nbDeFace3 (Jet jet)
 {
   int somme3 = 0;
@@ -155,9 +149,8 @@ int nbDeFace3 (Jet jet)
 // La fonction renvoie le nombre de fois où le visage 3 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
 }
 
- //****
  //
- //***
+
 int nbDeFace4 (Jet jet)
 {
   int somme4 = 0;
@@ -182,9 +175,8 @@ int nbDeFace4 (Jet jet)
 // La fonction renvoie le nombre de fois où le visage 4 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
 }
 
- //****
  //
- //***
+
 int nbDeFace5 (Jet jet)
 {
   int somme5 = 0;
@@ -209,9 +201,8 @@ int nbDeFace5 (Jet jet)
 // La fonction renvoie le nombre de fois où le visage 5 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
 }
 
- //****
- //
- //***
+//
+
 int nbDeFace6 (Jet jet)
 {
   int somme6 = 0;
@@ -236,9 +227,8 @@ int nbDeFace6 (Jet jet)
 // La fonction renvoie le nombre de fois où le visage 6 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
 }
 
- //****
- //
- //***
+//
+
 int mainPleine(Jet jet)
 {
   
@@ -318,9 +308,9 @@ int mainPleine(Jet jet)
   return 0 ;
 // Si une condition du main pleine est satisfaite, la fonction renvoie 25, sinon elle renvoie 0.
 }
- //****
- //
- //***
+
+//
+
 int brelan(Jet jet)
 {
   
@@ -380,9 +370,8 @@ int brelan(Jet jet)
 // les données à la fin du troisième mouvement, sinon elle renvoie 0. 
 }
 
- //****
- //
- //*** 
+//
+
 int carre(Jet jet)
 {
   
@@ -443,9 +432,7 @@ int carre(Jet jet)
 // les données à la fin du troisième mouvement, sinon elle renvoie 0.  
 } 
 
- //****
- //
- //***
+//
 
  int petiteSuite(Jet jet)
 {
@@ -504,9 +491,8 @@ int carre(Jet jet)
 // Si une condition du petite suite est satisfaite, la fonction renvoie 30, sinon elle renvoie 0.
 }
 
- //****
- //
- //***
+//
+
  int grandeSuite(Jet jet)
 {
 
@@ -561,10 +547,9 @@ int carre(Jet jet)
   return 0 ;
 // Si une condition du grande suite est satisfaite, la fonction renvoie 40, sinon elle renvoie 0. 
 }
- 
- //****
- //
- //****
+
+//
+
 int chance(Jet teste)
  {
     int somme = 0;
@@ -579,9 +564,9 @@ int chance(Jet teste)
 // Nous demandons également que la valeur de la somme des données renvoie la fonction.
 
  }
- //****
- //
- //***
+
+//
+
  int yahtzee(Jet jet)
  {
     if((jet.des[0] == jet.des[1]) && (jet.des[1] == jet.des[2]) && (jet.des[2]== jet.des[3]) && (jet.des[3]== jet.des[4])) 
@@ -594,9 +579,7 @@ int chance(Jet teste)
 // Si la condition du yahtzee est satisfaite, la fonction renvoie 50, sinon elle renvoie 0.
 }
 
- //****
- //
- //***
+//
 
 void dessineDes(Jet jet)
 {
