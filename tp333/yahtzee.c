@@ -2,8 +2,550 @@
 #include <stdlib.h>
 #include <time.h>
 #include "yahtzee.h"
+#define TAILLE_JET 5
 
 
+void match (Jet jet)
+{
+     Score score = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+     
+    int scoreFinale = 0;
+    int sorti = 0;
+     printf ("******************************************************************\n");
+     printf ("*                      BIENVENU AU YAHTZEE!!!                    *\n");
+     printf ("******************************************************************\n");
+  
+  for (int i = 0; i < 13; ++i)
+  {
+    Jet joueFait = joue (jet);
+    char option;
+
+  
+     printf ("\n\n\n");
+     printf ("******************************************************************\n");
+     printf ("*                QUEL POINTAGE VOULEZ-VOUS GARDER?               *\n");
+     printf ("******************************************************************\n");
+     printf ("*  (A) - Les valeurs avec le visage 1 ajouté: %d\n", nbDeFace(joueFait,1));
+     printf ("*  (B) - Les valeurs avec le visage 2 ajouté: %d\n", nbDeFace(joueFait,2));
+     printf ("*  (C) - Les valeurs avec le visage 3 ajouté: %d\n", nbDeFace(joueFait,3));
+     printf ("*  (D) - Les valeurs avec le visage 4 ajouté: %d\n", nbDeFace(joueFait,4));
+     printf ("*  (E) - Les valeurs avec le visage 5 ajouté: %d\n", nbDeFace(joueFait,5));
+     printf ("*  (F) - Les valeurs avec le visage 6 ajouté: %d\n", nbDeFace(joueFait,6));
+     printf ("*  (G) - Pour le main plaine on a la valeur: %d\n", mainPleine (joueFait));
+     printf ("*  (H) - Pour le brelan on a la valeur: %d\n", brelan (joueFait));
+     printf ("*  (I) - Pour le carre on a la valeur: %d\n", carre (joueFait));
+     printf ("*  (J) - Pour le petite suite on a la valeur: %d\n", petiteSuite (joueFait));
+     printf ("*  (K) - Pour le grande suite on a la valeur: %d\n", grandeSuite (joueFait)); 
+     printf ("*  (L) - Pour le chance on a la valeur: %d\n", chance (joueFait));
+     printf ("*  (M) - Pour le yahtzee on a la valeur: %d\n", yahtzee (joueFait));
+     printf ("\n");
+     printf ("******************************************************************\n\n\n\n");
+ 
+     do {
+     printf ("ATTENTION!!! CHOISISSEZ EN MAJUSCULE VOTRE JEU: ");
+     scanf (" %c", &option);
+     // Ici, l'utilisateur est invité à choisir le jeu qu'il souhaite marquer. 
+     printf ("\n");
+
+        switch(option)
+          {
+              case ('A'): 
+              score.un = nbDeFace(joueFait,1);
+              sorti = 0;
+              break;
+            
+              case ('B'): 
+              score.deux = nbDeFace(joueFait,2);
+              sorti = 0;
+              break;
+
+              case ('C'):
+              score.trois = nbDeFace(joueFait,3);
+              sorti = 0;
+              break;
+
+              case ('D'): 
+              score.quatre = nbDeFace(joueFait,4);
+              sorti = 0;
+              break;
+
+              case ('E'): 
+              score.cinq = nbDeFace(joueFait,5);
+              sorti = 0;
+              break;
+
+              case ('F'): 
+              score.six = nbDeFace(joueFait,6);
+              sorti = 0;
+              break;
+
+              case ('G'): 
+              score.mainPleine = mainPleine(joueFait);
+              sorti = 0;
+              break;
+            
+              case ('H'): 
+              score.brelan = brelan(joueFait);
+              sorti = 0;
+              break;
+
+              case ('I'): 
+              score.carre = carre(joueFait);
+              sorti = 0;
+              break;
+
+              case ('J'): 
+              score.petiteSuite = petiteSuite(joueFait);
+              sorti = 0;
+              break;
+
+              case ('K'): 
+              score.grandeSuite = grandeSuite(joueFait);
+              sorti = 0;
+              break;
+
+              case ('L'): 
+              score.chance = chance(joueFait);
+              sorti = 0;
+              break;
+
+              case ('M'): 
+              score.yahtzee = yahtzee(joueFait);
+              sorti = 0;
+              break;
+
+              default: printf ("\nATTENTION! OPTION INVALIDE!!!\n");
+                              sorti = 1;
+
+
+          }
+        } 
+        while (sorti);
+
+  
+              scoreFinale = (score.un + score.deux + score.trois + score.quatre + score.cinq + score.six +
+                            score.mainPleine + score.brelan + score.carre + score.petiteSuite + score.grandeSuite +
+                            score.chance + score.yahtzee);
+
+      printf ("******************************************************************\n");
+      printf ("*                            SCORE                               *\n");
+      printf ("******************************************************************\n");
+      printf("* (A) - Vous avez %d points dans la somme des données de valeur 1   \n", score.un);
+      printf("* (B) - Vous avez %d points dans la somme des données de valeur 2 \n", score.deux);
+      printf("* (C) - Vous avez %d points dans la somme des données de valeur 3   \n", score.trois);
+      printf("* (D) - Vous avez %d points dans la somme des données de valeur 4   \n", score.quatre);
+      printf("* (E) - Vous avez %d points dans la somme des données de valeur 5   \n", score.cinq);
+      printf("* (F) - Vous avez %d points dans la somme des données de valeur 6   \n", score.six);
+      printf("* (G) - Vous avez %d points dans en main plaine   \n", score.mainPleine);
+      printf("* (H) - Vous avez %d points dans en brelan   \n", score.brelan);
+      printf("* (I) - Vous avez %d points dans en carre   \n", score.carre);
+      printf("* (J) - Vous avez %d points dans en petite suite   \n", score.petiteSuite);
+      printf("* (K) - Vous avez %d points dans en grande suite   \n", score.grandeSuite);
+      printf("* (L) - Vous avez %d points dans en chance   \n", score.chance);
+      printf("* (M) - Vous avez %d points dans en yahtzee   \n\n", score.yahtzee);
+      printf ("******************************************************************\n");
+      printf ("\n*                      VOTRE SCORE:  %d                          *\n\n", scoreFinale);
+      printf ("******************************************************************\n\n\n");
+}
+}
+//****
+ //
+ //***
+ void testJour (Jet jet)
+{
+printf ("******************************************************************\n");
+printf ("*                                  MODE TEST                                            *\n");
+printf ("******************************************************************\n");
+
+printf ("\n");
+printf (" TEST nbDeFace\n");
+  jet.des[0] = 1;
+  jet.des[1] = 1;
+  jet.des[2] = 1;
+  jet.des[3] = 3;
+  jet.des[4] = 3;
+printf (" %d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(nbDeFace (jet,1) == 3) printf("Si la somme des dés avec face 1 est 3, la fonction marche\n ");
+else printf("Si la somme des dés avec face 1 est different de 3, la fonction ne marche pas\n ");
+
+  jet.des[0] = 2;
+  jet.des[1] = 1;
+  jet.des[2] = 2;
+  jet.des[3] = 2;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(nbDeFace (jet,2) == 6) printf("Si la somme des dés avec face 2 est 6, la fonction marche\n ");
+else printf("Si la somme des dés avec face 2 est different de 6, la fonction ne marche pas\n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 1;
+  jet.des[2] = 3;
+  jet.des[3] = 4;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(nbDeFace (jet,3) == 6) printf("Si la somme des dés avec face 3 est 6, la fonction marche\n ");
+else printf("Si la somme des dés avec face 3 est different de 6, la fonction ne marche pas\n ");
+
+  jet.des[0] = 2;
+  jet.des[1] = 1;
+  jet.des[2] = 4;
+  jet.des[3] = 2;
+  jet.des[4] = 4;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(nbDeFace (jet,4) == 8) printf("Si la somme des dés avec face 4 est 8, la fonction marche\n ");
+else printf("Si la somme des dés avec face 4 est different de 8, la fonction ne marche pas\n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 5;
+  jet.des[2] = 3;
+  jet.des[3] = 5;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(nbDeFace (jet,5) == 10) printf("Si la somme des dés avec face 5 est 10, la fonction marche\n ");
+else printf("Si la somme des dés avec face 5 est different de 10, la fonction ne marche pas\n ");
+
+  jet.des[0] = 6;
+  jet.des[1] = 1;
+  jet.des[2] = 6;
+  jet.des[3] = 6;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(nbDeFace (jet,6) == 18) printf("Si la somme des dés avec face 6 est 18, la fonction marche\n\n ");
+else printf("Si la somme des dés avec face 6 est different de 18, la fonction ne marche pas\n\n ");
+
+printf ("TEST mainPleine\n");
+  jet.des[0] = 1;
+  jet.des[1] = 1;
+  jet.des[2] = 3;
+  jet.des[3] = 3;
+  jet.des[4] = 3;
+printf (" %d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(mainPleine (jet) == 25) printf("S'il y a deux dés avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction marche \n ");
+else printf("s'il n'y a pas deux données avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction ne marche pas\n ");
+
+  jet.des[0] = 2;
+  jet.des[1] = 1;
+  jet.des[2] = 2;
+  jet.des[3] = 2;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(mainPleine (jet) == 0) printf("S'il y a deux dés avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction marche \n ");
+else printf("s'il n'y a pas deux données avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction ne marche pas\n ");
+
+
+  jet.des[0] = 2;
+  jet.des[1] = 2;
+  jet.des[2] = 4;
+  jet.des[3] = 4;
+  jet.des[4] = 4;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(mainPleine (jet) == 25) printf("S'il y a deux dés avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction marche \n ");
+else printf("s'il n'y a pas deux données avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction ne marche pas\n ");
+
+
+  jet.des[0] = 6;
+  jet.des[1] = 1;
+  jet.des[2] = 2;
+  jet.des[3] = 4;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(mainPleine (jet) == 0) printf("S'il y a deux dés avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction marche \n ");
+else printf("s'il n'y a pas deux données avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction ne marche pas\n ");
+
+
+  jet.des[0] = 5;
+  jet.des[1] = 1;
+  jet.des[2] = 5;
+  jet.des[3] = 1;
+  jet.des[4] = 5;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(mainPleine (jet) == 25) printf("S'il y a deux dés avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction marche \n\n ");
+else printf("s'il n'y a pas deux données avec des faces égales entre elles et trois autres données avec des faces égales entre elles, la fonction ne marche pas\n\n ");
+
+printf ("TEST brelan\n");
+  jet.des[0] = 1;
+  jet.des[1] = 1;
+  jet.des[2] = 1;
+  jet.des[3] = 1;
+  jet.des[4] = 3;
+printf (" %d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(brelan (jet) == 7) printf("Si le retour vault 7, la fonction marche parce que il y a trois dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 7, la fonction ne marche pas \n ");
+
+
+  jet.des[0] = 1;
+  jet.des[1] = 3;
+  jet.des[2] = 3;
+  jet.des[3] = 3;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(brelan (jet) == 13) printf("Si le retour vault 13, la fonction marche parce que il y a trois dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 13, la fonction ne marche pas \n ");
+
+  jet.des[0] = 3;
+  jet.des[1] = 3;
+  jet.des[2] = 3;
+  jet.des[3] = 3;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(brelan (jet) == 15) printf("Si le retour vault 15, la fonction marche parce que il y a trois dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 15, la fonction ne marche pas \n ");
+ 
+  jet.des[0] = 1;
+  jet.des[1] = 1;
+  jet.des[2] = 2;
+  jet.des[3] = 3;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(brelan (jet) == 0) printf("Si le retour vault 0, la fonction marche parce que il n'y a pas trois dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 1;
+  jet.des[2] = 3;
+  jet.des[3] = 4;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(brelan (jet) == 0) printf("Si le retour vault 0, la fonction marche parce que il n'y a pas trois dés avec des faces égales\n\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n\n ");
+
+printf ("TEST carre\n");
+  jet.des[0] = 1;
+  jet.des[1] = 1;
+  jet.des[2] = 1;
+  jet.des[3] = 2;
+  jet.des[4] = 3;
+printf (" %d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(carre (jet) == 0) printf("Si le retour vault 0, la fonction marche parce que il n'y a pas quattre dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 3;
+  jet.des[2] = 3;
+  jet.des[3] = 3;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(carre (jet) == 13) printf("Si le retour vault 13, la fonction marche parce que il y a quattre dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 13, la fonction ne marche pas \n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 1;
+  jet.des[2] = 2;
+  jet.des[3] = 3;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(carre (jet) == 0) printf("Si le retour vault 0, la fonction marche parce que il n'y a pas quattre dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 5;
+  jet.des[2] = 5;
+  jet.des[3] = 5;
+  jet.des[4] = 5;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(carre (jet) == 21) printf("Si le retour vault 21, la fonction marche parce que il y a quattre dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 21, la fonction ne marche pas \n ");
+
+  jet.des[0] = 6;
+  jet.des[1] = 6;
+  jet.des[2] = 6;
+  jet.des[3] = 3;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(carre (jet) == 27) printf("Si le retour vault 27, la fonction marche parce que il y a quattre dés avec des faces égales\n\n ");
+else printf("S'il ne retourne pas le valeur 27, la fonction ne marche pas \n\n ");
+
+printf ("TEST petiteSuite\n");
+  jet.des[0] = 6;
+  jet.des[1] = 5;
+  jet.des[2] = 4;
+  jet.des[3] = 3;
+  jet.des[4] = 6;
+printf (" %d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(petiteSuite (jet) == 30) printf("Si le retour vault 30, la fonction marche parce que il y a une sequence de quattre chiffres\n ");
+else printf("S'il ne retourne pas le valeur 30, la fonction ne marche pas \n ");
+
+  jet.des[0] = 5;
+  jet.des[1] = 6;
+  jet.des[2] = 6;
+  jet.des[3] = 4;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(petiteSuite (jet) == 30) printf("Si le retour vault 30, la fonction marche parce que il y a une sequence de quattre chiffres\n ");
+else printf("S'il ne retourne pas le valeur 30, la fonction ne marche pas \n ");
+
+  jet.des[0] = 4;
+  jet.des[1] = 6;
+  jet.des[2] = 4;
+  jet.des[3] = 3;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(petiteSuite (jet) == 0) printf("Si le retour vault 0, la fonction marche, parce que il n'y a pas une sequence de quattre chiffres\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 6;
+  jet.des[2] = 2;
+  jet.des[3] = 3;
+  jet.des[4] = 4;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(petiteSuite (jet) == 30) printf("Si le retour vault 30, la fonction marche parce que il y a une sequence de quattre chiffres\n ");
+else printf("S'il ne retourne pas le valeur 30, la fonction ne marche pas \n ");
+
+
+  jet.des[0] = 5;
+  jet.des[1] = 6;
+  jet.des[2] = 5;
+  jet.des[3] = 3;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(petiteSuite (jet) == 0) printf("Si le retour vault 0, la fonction marche, parce que il n'y a pas une sequence de quattre chiffres\n\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n\n ");
+
+printf ("TEST grandeSuite\n");
+  jet.des[0] = 1;
+  jet.des[1] = 3;
+  jet.des[2] = 2;
+  jet.des[3] = 5;
+  jet.des[4] = 4;
+printf (" %d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(grandeSuite (jet) == 40) printf("Si le retour vault 40, la fonction marche, parce que il y a une sequence de cinq chiffres\n ");
+else printf("S'il ne retourne pas le valeur 40, la fonction ne marche pas \n ");
+
+  jet.des[0] = 2;
+  jet.des[1] = 6;
+  jet.des[2] = 3;
+  jet.des[3] = 5;
+  jet.des[4] = 4;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(grandeSuite (jet) == 40) printf("Si le retour vault 40, la fonction marche, parce que il y a une sequence de cinq chiffres\n ");
+else printf("S'il ne retourne pas le valeur 40, la fonction ne marche pas \n ");;
+
+  jet.des[0] = 5;
+  jet.des[1] = 6;
+  jet.des[2] = 5;
+  jet.des[3] = 3;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(grandeSuite (jet) == 0) printf("Si le retour vault 0, la fonction marche, parce que il n'y a pas une sequence de cinq chiffres\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n ");
+
+  jet.des[0] = 5;
+  jet.des[1] = 4;
+  jet.des[2] = 5;
+  jet.des[3] = 1;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(grandeSuite (jet) == 0) printf("Si le retour vault 0, la fonction marche, parce que il n'y a pas une sequence de cinq chiffres\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 6;
+  jet.des[2] = 3;
+  jet.des[3] = 3;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(grandeSuite (jet) == 0) printf("Si le retour vault 0, la fonction marche, parce que il n'y a pas une sequence de cinq chiffres\n\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n\n ");
+
+printf ("TEST chance\n");
+  jet.des[0] = 1;
+  jet.des[1] = 4;
+  jet.des[2] = 3;
+  jet.des[3] = 3;
+  jet.des[4] = 5;
+printf (" %d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(chance (jet) == 16) printf("Si le retour vault 16, la fonction marche parce que la somme des dés est %d\n ", chance (jet));
+else printf("S'il ne retourne pas le valeur 16, la fonction ne marche pas \n ");
+
+  jet.des[0] = 2;
+  jet.des[1] = 6;
+  jet.des[2] = 4;
+  jet.des[3] = 3;
+  jet.des[4] = 1;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(chance (jet) == 16) printf("Si le retour vault 16, la fonction marche parce que la somme des dés est %d\n ", chance (jet));
+else printf("S'il ne retourne pas le valeur 16, la fonction ne marche pas \n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 3;
+  jet.des[2] = 3;
+  jet.des[3] = 5;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(chance (jet) == 18) printf("Si le retour vault 18, la fonction marche parce que la somme des dés est %d\n ", chance (jet));
+else printf("S'il ne retourne pas le valeur 18, la fonction ne marche pas \n ");
+
+  jet.des[0] = 1;
+  jet.des[1] = 6;
+  jet.des[2] = 2;
+  jet.des[3] = 2;
+  jet.des[4] = 2;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(chance (jet) == 13) printf("Si le retour vault 13, la fonction marche parce que la somme des dés est %d\n ", chance (jet));
+else printf("S'il ne retourne pas le valeur 13, la fonction ne marche pas \n ");
+
+  jet.des[0] = 4;
+  jet.des[1] = 5;
+  jet.des[2] = 3;
+  jet.des[3] = 6;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(chance (jet) == 24) printf("Si le retour vault 24, la fonction marche parce que la somme des dés est %d\n\n ", chance (jet));
+else printf("S'il ne retourne pas le valeur 24, la fonction ne marche pas \n\n ");
+
+printf ("TEST yahtzee\n");
+  jet.des[0] = 6;
+  jet.des[1] = 6;
+  jet.des[2] = 6;
+  jet.des[3] = 6;
+  jet.des[4] = 6;
+printf (" %d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(yahtzee (jet) == 50) printf("Si le retour vault 50, la fonction marche parce que il y a cinq dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 50, la fonction ne marche pas \n ");
+
+  jet.des[0] = 3;
+  jet.des[1] = 5;
+  jet.des[2] = 3;
+  jet.des[3] = 6;
+  jet.des[4] = 2;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(yahtzee (jet) == 0) printf("Si le retour vault 0, la fonction marche, parce que il n'y a pas cinq dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n ");
+
+  jet.des[0] = 4;
+  jet.des[1] = 4;
+  jet.des[2] = 4;
+  jet.des[3] = 4;
+  jet.des[4] = 4;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(yahtzee (jet) == 50) printf("Si le retour vault 50, la fonction marche parce que il y a cinq dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 50, la fonction ne marche pas \n ");
+
+
+  jet.des[0] = 1;
+  jet.des[1] = 5;
+  jet.des[2] = 2;
+  jet.des[3] = 6;
+  jet.des[4] = 3;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(yahtzee (jet) == 0) printf("Si le retour vault 0, la fonction marche, parce que il n'y a pas cinq dés avec des faces égales\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n ");
+
+  jet.des[0] = 4;
+  jet.des[1] = 5;
+  jet.des[2] = 3;
+  jet.des[3] = 6;
+  jet.des[4] = 6;
+printf ("%d, %d, %d, %d, %d  ", jet.des[0],jet.des[1],jet.des[2],jet.des[3],jet.des[4]);  
+if(yahtzee (jet) == 0) printf("Si le retour vault 0, la fonction marche, parce que il n'y a pas cinq dés avec des faces égales\n\n ");
+else printf("S'il ne retourne pas le valeur 0, la fonction ne marche pas \n\n ");
+
+
+}
+ //****
+ //
+ //***
  Jet joue (Jet jet)
  {
   const int MIN = 1;
@@ -68,167 +610,28 @@ dessineDes(jet);
 // La fonction renvoie les valeurs dans une structure de type jet
  }
 
-//
- 
-int nbDeFace1 (Jet jet)
-{
-  int somme1 = 0;
-  int somme1a = 0;
-// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
-  
-      for (int i = 0; i < 5; ++i)
-        { 
-              if (jet.des[i] == 1)
-              {
-                somme1 ++;
-              }
-              
-        }
-// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 1 est apparu à la fin des trois coups.
- 
-  if (somme1 != 0)
-    somme1 *= 1;
-    somme1a = somme1;
-// On multiplie ici le nombre de fois que la face 1 est apparue par la valeur de la face, qui dans ce cas est égale à 1.
-      
-  return somme1a; 
-// La fonction renvoie le nombre de fois où le visage 1 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
-}
-
-//
-
-int nbDeFace2 (Jet jet)
-{
-  int somme2 = 0;
-  int somme2a = 0;
-// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
-  
-      for (int i = 0; i < 5; ++i)
-        { 
-              if (jet.des[i] == 2)
-              {
-                somme2 ++;
-              }
-              
-        }
-// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 2 est apparu à la fin des trois coups.
- 
-  if (somme2 != 0)
-    somme2 *= 2;
-    somme2a = somme2;
-// On multiplie ici le nombre de fois que la face 2 est apparue par la valeur de la face, qui dans ce cas est égale à 2.
-
-  return somme2a;
-// La fonction renvoie le nombre de fois où le visage 2 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage.
-}
-
-//
-
-int nbDeFace3 (Jet jet)
-{
-  int somme3 = 0;
-  int somme3a = 0;
-// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
-    
-      for (int i = 0; i < 5; ++i)
-        { 
-              if (jet.des[i] == 3)
-              {
-                somme3 ++;
-              }
-              
-        }
-// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 3 est apparu à la fin des trois coups.
-
-  if (somme3 != 0)
-    somme3 *= 3;
-    somme3a = somme3;
-// On multiplie ici le nombre de fois que la face 3 est apparue par la valeur de la face, qui dans ce cas est égale à 3.
-  
-  return somme3a;
-// La fonction renvoie le nombre de fois où le visage 3 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
-}
-
+ //****
  //
+ //***
 
-int nbDeFace4 (Jet jet)
+int nbDeFace (Jet jet, int face)
 {
-  int somme4 = 0;
-  int somme4a = 0;
-// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
-    
-      for (int i = 0; i < 5; ++i)
-        { 
-              if (jet.des[i] == 4)
-              {
-                somme4 ++;
-              }        
-        }
-// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 4 est apparu à la fin des trois coups.  
- 
-  if (somme4 != 0)
-    somme4 *= 4;
-    somme4a = somme4;
-// On multiplie ici le nombre de fois que la face 4 est apparue par la valeur de la face, qui dans ce cas est égale à 4.
-     
-  return somme4a;
-// La fonction renvoie le nombre de fois où le visage 4 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
+  int i;
+  int valeur = 0;
+
+  for (i = 0; i < TAILLE_JET; i++)
+  {
+    if (jet.des[i] == face)
+      valeur ++;
+  }
+  return (valeur * face);
+
 }
 
+
+ //****
  //
-
-int nbDeFace5 (Jet jet)
-{
-  int somme5 = 0;
-  int somme5a = 0;
-// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
-   
-      for (int i = 0; i < 5; ++i)
-        { 
-              if (jet.des[i] == 5)
-              {
-                somme5 ++;
-              }          
-        }
- // Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 5 est apparu à la fin des trois coups.
-
-  if (somme5 != 0)
-    somme5 *= 5;
-    somme5a = somme5;
-// On multiplie ici le nombre de fois que la face 5 est apparue par la valeur de la face, qui dans ce cas est égale à 5.
-    
-  return somme5a;
-// La fonction renvoie le nombre de fois où le visage 5 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
-}
-
-//
-
-int nbDeFace6 (Jet jet)
-{
-  int somme6 = 0;
-  int somme6a = 0;
-// Nous déclarons ici les deux variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
-      
-      for (int i = 0; i < 5; ++i)
-        { 
-              if (jet.des[i] == 6)
-              {
-                somme6 ++;
-              }       
-        }
-// Ici, nous avons fait un for pour déterminer le nombre de fois que le visage 6 est apparu à la fin des trois coups.  
-
-  if (somme6 != 0)
-    somme6 *= 6;
-    somme6a = somme6;
-// On multiplie ici le nombre de fois que la face 6 est apparue par la valeur de la face, qui dans ce cas est égale à 6.
-   
-    return somme6a;
-// La fonction renvoie le nombre de fois où le visage 6 apparaît à la fin du troisième mouvement, multiplié par la valeur du visage. 
-}
-
-//
-
+ //***
 int mainPleine(Jet jet)
 {
   
@@ -308,9 +711,9 @@ int mainPleine(Jet jet)
   return 0 ;
 // Si une condition du main pleine est satisfaite, la fonction renvoie 25, sinon elle renvoie 0.
 }
-
-//
-
+ //****
+ //
+ //***
 int brelan(Jet jet)
 {
   
@@ -370,8 +773,9 @@ int brelan(Jet jet)
 // les données à la fin du troisième mouvement, sinon elle renvoie 0. 
 }
 
-//
-
+ //****
+ //
+ //*** 
 int carre(Jet jet)
 {
   
@@ -432,7 +836,9 @@ int carre(Jet jet)
 // les données à la fin du troisième mouvement, sinon elle renvoie 0.  
 } 
 
-//
+ //****
+ //
+ //***
 
  int petiteSuite(Jet jet)
 {
@@ -476,12 +882,9 @@ int carre(Jet jet)
 // Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
 // le nombre de fois que chacune des cinq données apparaît.
             
-            if (((somme1 >= 1) && (somme2 >= 1) && (somme3 >= 1) &&
-                (somme4 >= 1)) ||
-                ((somme2 >= 1) && (somme3 >= 1) && (somme4 >= 1) &&
-                (somme5 >= 1)) ||
-                ((somme3 >= 1) && (somme4 >= 1) && (somme5 >= 1) &&
-                (somme6 >= 1)))
+            if (((somme1 >= 1) && (somme2 >= 1) && (somme3 >= 1) && (somme4 >= 1)) ||
+                ((somme2 >= 1) && (somme3 >= 1) && (somme4 >= 1) && (somme5 >= 1)) ||
+                ((somme3 >= 1) && (somme4 >= 1) && (somme5 >= 1) && (somme6 >= 1)))
 // Nous écrivons ici les conditions dans lesquelles une petite suite peut se produire.   
             {
               return 30; 
@@ -491,8 +894,9 @@ int carre(Jet jet)
 // Si une condition du petite suite est satisfaite, la fonction renvoie 30, sinon elle renvoie 0.
 }
 
-//
-
+ //****
+ //
+ //***
  int grandeSuite(Jet jet)
 {
 
@@ -535,10 +939,8 @@ int carre(Jet jet)
 // Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
 // le nombre de fois que chacune des cinq données apparaît.
             
-            if (((somme1 == 1) && (somme2 == 1) && (somme3 == 1) &&
-                (somme4 == 1) && (somme5 == 1)) ||
-                ((somme2 == 1) && (somme3 == 1) && (somme4 == 1) &&
-                (somme5 == 1) && (somme6 == 1)))
+            if (((somme1 == 1) && (somme2 == 1) && (somme3 == 1) && (somme4 == 1) && (somme5 == 1)) ||
+                ((somme2 == 1) && (somme3 == 1) && (somme4 == 1) && (somme5 == 1) && (somme6 == 1)))
 // Nous écrivons ici les conditions dans lesquelles une grande suite peut se produire.       
             {
               return 40; 
@@ -547,9 +949,10 @@ int carre(Jet jet)
   return 0 ;
 // Si une condition du grande suite est satisfaite, la fonction renvoie 40, sinon elle renvoie 0. 
 }
-
-//
-
+ 
+ //****
+ //
+ //****
 int chance(Jet teste)
  {
     int somme = 0;
@@ -564,9 +967,9 @@ int chance(Jet teste)
 // Nous demandons également que la valeur de la somme des données renvoie la fonction.
 
  }
-
-//
-
+ //****
+ //
+ //***
  int yahtzee(Jet jet)
  {
     if((jet.des[0] == jet.des[1]) && (jet.des[1] == jet.des[2]) && (jet.des[2]== jet.des[3]) && (jet.des[3]== jet.des[4])) 
@@ -579,8 +982,9 @@ int chance(Jet teste)
 // Si la condition du yahtzee est satisfaite, la fonction renvoie 50, sinon elle renvoie 0.
 }
 
-//
-
+ //****
+ //
+ //***
 void dessineDes(Jet jet)
 {
   
