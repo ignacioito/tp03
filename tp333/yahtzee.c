@@ -542,11 +542,11 @@ void match (Jet jet)
 
 
 }
- //****
- //
- //****
- Jet joue (Jet jet)
- {
+//****
+//
+//****
+Jet joue (Jet jet)
+{
      const int MIN = 1;
      const int MAX = 6;
   
@@ -560,53 +560,54 @@ void match (Jet jet)
      printf("Voici cinq nombres pigés au hasard entre %d et %d : \n\n", MIN, MAX);
      // Ici, nous informons l'utilisateur qu'il y a cinq nombres choisis au hasard
 
-  for (int i = 0; i < 5; ++i)
-  {
-     n = rand() % MAX + MIN;
-     jet.des[i] = n;
-// Ici nous avons couru un pour pour pour la première fois remplir le tableau contenant
-// les valeurs des données du premier coup.
+     for (int i = 0; i < 5; ++i)
+     {
+          n = rand() % MAX + MIN;
+          jet.des[i] = n;
+          // Ici nous avons couru un pour pour pour la première fois remplir le tableau contenant
+          // les valeurs des données du premier coup.
      
-  }
+}
   printf("\n");
 
   dessineDes(jet);
-// Nous appelons ici la fonction dessineDes pour que les valeurs obtenues dans le premier
-// les jeux sont représentés comme s'ils étaient des dés.
+  // Nous appelons ici la fonction dessineDes pour que les valeurs obtenues dans le premier
+  // les jeux sont représentés comme s'ils étaient des dés.
 
   for (int c = 0; c < 2; ++c)
   {
-// Ici, nous réglons ceci pour que nous puissions lancer les dés deux fois plus
+  // Ici, nous réglons ceci pour que nous puissions lancer les dés deux fois plus
 
-        printf("\nEntrez 0 POUR CONSERVER la valeur des données ou entrez 1 POUR MODIFIER la valeur de chacune des cinq données.\n\n");
-// Nous demandons ici à l’utilisateur de choisir les valeurs des données qui seront conservées et les valeurs
-// des données qui seront modifiées, à la fois au deuxième et au troisième coup de chaque tour.
+     printf("\nEntrez 0 POUR CONSERVER la valeur des données ou entrez 1 POUR MODIFIER la valeur de chacune des cinq données.\n\n");
+     // Nous demandons ici à l’utilisateur de choisir les valeurs des données qui seront conservées et les valeurs
+     // des données qui seront modifiées, à la fois au deuxième et au troisième coup de chaque tour.
 
-        for (int i = 0; i < 5; ++i)
-        {
+     for (int i = 0; i < 5; ++i)
+     {
           scanf (" %c", &quant[i]);
-        }
-// Ici, nous mettons un scanf pour que l’utilisateur puisse taper 0 ou 1 et conserver ou changer le
-// valeur des données des deux derniers tours. Les valeurs 0 ou 1 sont reçues dans tableau quant []
-        printf("\n");
+     }
+     // Ici, nous mettons un scanf pour que l’utilisateur puisse taper 0 ou 1 et conserver ou changer le
+     // valeur des données des deux derniers tours. Les valeurs 0 ou 1 sont reçues dans tableau quant []
+     printf("\n");
 
-        for (int i = 0; i < 5; ++i)
-        {
+     for (int i = 0; i < 5; ++i)
+     {
           if (quant[i] == '1')
-        {
-          n = rand() % MAX + MIN;
-          jet.des[i] = n;
-         }
-// Ici, nous avons fait cela pour déterminer quelles données devaient être conservées et quelles données devaient être conservées.
-// a joué à nouveau, dans les deux derniers jeux de chaque tour.
-        }
-dessineDes(jet);
-// Ici, nous appelons la fonction dessineDes afin que les valeurs obtenues à la fois dans le deuxième et le troisième
-// dans le troisième coup sont représentés comme s'ils étaient des dés.
+          {
+               n = rand() % MAX + MIN;
+               jet.des[i] = n;
+          }
+          // Ici, nous avons fait cela pour déterminer quelles données devaient être conservées et quelles données devaient être conservées.
+          // a joué à nouveau, dans les deux derniers jeux de chaque tour.
+     }
+     dessineDes(jet);
+     // Ici, nous appelons la fonction dessineDes afin que les valeurs obtenues à la fois dans le deuxième et le troisième
+     // dans le troisième coup sont représentés comme s'ils étaient des dés.
         
   }
+     
      return jet;
-// La fonction renvoie les valeurs dans une structure de type jet
+     // La fonction renvoie les valeurs dans une structure de type jet
 }
 
 //****
@@ -626,24 +627,21 @@ int nbDeFace (Jet jet, int face)
   return (valeur * face);
 
 }
-
-
  //****
  //
- //***4
+ //****
 int mainPleine(Jet jet)
 {
-  
   int somme1 = 0;
   int somme2 = 0;
   int somme3 = 0;
   int somme4 = 0;
   int somme5 = 0;
   int somme6 = 0;
-// Nous déclarons ici les six variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  // Nous déclarons ici les six variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
   
       for (int i = 0; i < 5; ++i)
-        { 
+      { 
               if (jet.des[i] == 1)
               {
                 somme1 ++;
@@ -669,8 +667,8 @@ int mainPleine(Jet jet)
                 somme6 ++;
               }
         }
-// Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
-// le nombre de fois que chacune des cinq données apparaît
+        // Ici, nous avons fait un for pour capturer en six variables (somme1, somme2, somme3, somme4, somme5 et somme6)
+        // le nombre de fois que chacune des cinq données apparaît
             
             if (((somme1 == 3) && (somme2 == 2)) ||
                 ((somme1 == 3) && (somme3 == 2)) ||
@@ -702,7 +700,7 @@ int mainPleine(Jet jet)
                 ((somme6 == 3) && (somme3 == 2)) ||
                 ((somme6 == 3) && (somme4 == 2)) ||
                 ((somme6 == 3) && (somme5 == 2)))
-// Nous écrivons ici les conditions dans lesquelles une main plaine peut se produire      
+                // Nous écrivons ici les conditions dans lesquelles une main plaine peut se produire      
             {
               return 25; 
             }
@@ -710,9 +708,9 @@ int mainPleine(Jet jet)
   return 0 ;
 // Si une condition du main pleine est satisfaite, la fonction renvoie 25, sinon elle renvoie 0.
 }
- //****
- //
- //***
+//****
+//
+//****
 int brelan(Jet jet)
 {
   
@@ -723,13 +721,13 @@ int brelan(Jet jet)
   int somme4 = 0;
   int somme5 = 0;
   int somme6 = 0;
-// Nous déclarons ici les sept variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  // Nous déclarons ici les sept variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
   
   for (int i = 0; i < 5; ++i)
     {
       total = total + jet.des[i]; 
     }
-// Ici nous avons fait un for pour déterminer la somme de toutes les faces des données à la fin des trois tours de chaque tour.
+  // Ici nous avons fait un for pour déterminer la somme de toutes les faces des données à la fin des trois tours de chaque tour.
       
       for (int i = 0; i < 5; ++i)
         { 
@@ -834,12 +832,11 @@ int carre(Jet jet)
 // Si l'une des conditions du carre est remplie, la fonction renvoie la valeur de somme de toutes
 // les données à la fin du troisième mouvement, sinon elle renvoie 0.  
 } 
+//****
+//
+//****
 
- //****
- //
- //***
-
- int petiteSuite(Jet jet)
+int petiteSuite(Jet jet)
 {
   
   int somme1 = 0;
@@ -848,7 +845,7 @@ int carre(Jet jet)
   int somme4 = 0;
   int somme5 = 0;
   int somme6 = 0;
-// Nous déclarons ici les six variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
+  // Nous déclarons ici les six variables de paramètres locaux de type int que nous allons utiliser dans la fonction.
   
       
       for (int i = 0; i < 5; ++i)
@@ -953,7 +950,7 @@ int carre(Jet jet)
  //
  //****
 int chance(Jet teste)
- {
+{
     int somme = 0;
 // Ici, nous déclarons la variable de type int de paramètres locaux que nous allons utiliser dans la fonction.
 
@@ -966,33 +963,30 @@ int chance(Jet teste)
 // Nous demandons également que la valeur de la somme des données renvoie la fonction.
 
  }
- //****
- //
- //***
- int yahtzee(Jet jet)
- {
-    if((jet.des[0] == jet.des[1]) && (jet.des[1] == jet.des[2]) && (jet.des[2]== jet.des[3]) && (jet.des[3]== jet.des[4])) 
-// Ici nous avons fait la condition pour qu'un yahtzee soit fait.
-    {
+//****
+//
+//****
+int yahtzee(Jet jet)
+{
+     if((jet.des[0] == jet.des[1]) && (jet.des[1] == jet.des[2]) && (jet.des[2]== jet.des[3]) && (jet.des[3]== jet.des[4])) 
+     // Ici nous avons fait la condition pour qu'un yahtzee soit fait.
+     {
       return 50;
-    }
+     }
   
-  return 0;
+     return 0;
 // Si la condition du yahtzee est satisfaite, la fonction renvoie 50, sinon elle renvoie 0.
 }
-
- //****
- //
- //***
+//****
+//
+//****
 void dessineDes(Jet jet)
-{
-  
+{  
   int rangee;
   int colonne;
   int JetGauche = 0;
   int JetDroite = 6;  
   char montrerDes[5][47];
-  
   
   for(rangee = 0; rangee < 5; rangee++)
   {
